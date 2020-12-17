@@ -13,7 +13,7 @@ import ItemRelations from './item-relations';
 import GridRelations from './grid-relations';
 
 const ContentOuter = styled.div`
-  margin: 1em var(--content-padding);
+  margin: 0em 0;
 
   ${responsive.xs} {
     margin: 0;
@@ -28,7 +28,7 @@ const ShapeComponents = ({ components, overrides }) => {
   return (
     <div>
       {components
-        ?.filter((component) => component.content != null)
+        ?.filter((component) => component?.content != null)
         .map(({ type, ...component }, index) => {
           const key = index;
           let Component;

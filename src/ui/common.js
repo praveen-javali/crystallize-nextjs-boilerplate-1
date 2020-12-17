@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { responsive } from './responsive';
 
 export const Outer = styled.div`
-  margin-bottom: 30px;
   max-width: 1600px;
   padding: 0 0;
   margin: 0 auto;
@@ -12,6 +11,13 @@ export const Outer = styled.div`
   ${responsive.smAndLess} {
     padding: 0 1rem;
   }
+`;
+export const Inner = styled.div`
+  max-width: 1800px;
+  padding: 0 100px;
+  margin: 0 auto;
+  display: block;
+  min-height: 100vh;
 `;
 
 export const Header = styled.div`

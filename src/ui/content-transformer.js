@@ -12,12 +12,13 @@ const commonTransfomerOverrides = {
         {renderNode(rest)}
       </a>
     );
-  },
+  }
 };
 
 const maxWidth = '600px';
 
 const ContentTransformerOuter = styled.div`
+  font-size: var(--font-size-body);
   p,
   h2,
   h3,
@@ -27,9 +28,6 @@ const ContentTransformerOuter = styled.div`
     margin: 0 auto;
     text-align: left;
     max-width: ${maxWidth};
-  }
-  h3 {
-    font-size: 2rem;
   }
   p,
   li {
@@ -42,35 +40,6 @@ const ContentTransformerOuter = styled.div`
     line-height: 1.8;
   }
 
-  ul {
-    max-width: ${maxWidth};
-    margin: 0 auto;
-    display: block;
-    list-style: none;
-    margin: 1em 0 1em 30px;
-
-    > li {
-      position: relative;
-      display: block;
-
-      &:not(:last-child) {
-        margin-bottom: 1em;
-      }
-
-      &::before {
-        position: absolute;
-        width: 8px;
-        top: 50%;
-        margin-top: -5px;
-        left: -30px;
-        height: 8px;
-        content: '';
-        border-radius: 50%;
-        background: rgb(143, 222, 203);
-      }
-    }
-  }
-
   pre {
     margin-left: calc(-0.5 * var(--content-padding));
     width: calc(100% + var(--content-padding));
@@ -81,6 +50,24 @@ const ContentTransformerOuter = styled.div`
     background: rgb(243, 244, 246);
     border-radius: 5px;
     overflow: auto;
+  }
+  blockquote {
+    padding-left: 2em;
+    font-size: var(--font-size-md);
+    font-style: italic;
+    position: relative;
+    display: flex;
+    line-height: 140%;
+    align-items: center;
+    margin: 2em 0;
+    &:after {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3em;
+      position: absolute;
+      content: open-quote;
+    }
   }
 `;
 

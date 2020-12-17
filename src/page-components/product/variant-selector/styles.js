@@ -26,7 +26,6 @@ export const Button = styled.button.attrs(() => ({
   cursor: pointer;
   text-transform: capitalize;
   position: relative;
-  border-radius: 4px;
   &:focus,
   &:active {
     outline: none;
@@ -40,11 +39,10 @@ export const Button = styled.button.attrs(() => ({
 `;
 
 export const AttributeName = styled.h4`
-  text-transform: uppercase;
-  margin-bottom: 0.2rem;
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 13px;
+  margin: 25px 0 10px;
+  color: var(--color-text-main);
+  font-size: var(--font-size-sm);
 `;
 
 export const AttributeSelector = styled.div`
@@ -53,25 +51,27 @@ export const AttributeSelector = styled.div`
 `;
 
 export const AttributeButton = styled.button`
-  flex-grow: 1;
-  flex-basis: 0;
   text-transform: capitalize;
   font-weight: bold;
-  padding: 0.8rem;
-
+  flex-wrap: wrap;
+  border: 1px solid #dfdfdf;
+  width: 25%;
+  padding: 10px 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   ${is('selected')`
-    background: var(--color-text-main);
-    color: var(--color-main-background);
+    border-color: var(--color-text-main);
   `};
+`;
 
-  &:first-child {
-    border-top-left-radius: 0.2rem;
-    border-bottom-left-radius: 0.2rem;
-  }
-
-  &:last-child {
-    border-top-right-radius: 0.2rem;
-    border-bottom-right-radius: 0.2rem;
-    border-right: none;
+export const VariantImage = styled.div`
+  width: 100%;
+  max-width: 100px;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 `;

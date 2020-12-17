@@ -2,15 +2,38 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   :root {
-    --content-padding: 50px;
+    /* Typography */
+    --font-family-main: "Trebuchet MS", sans-serif;
+
+    --font-size-lg: 32px;
+    --font-size-md: 22px;
+    --font-size-sm: 16px;
+
+    --font-size-body: 14px;
+    --font-size-tags: 12px;
     
+    /* Colors */
     --color-main-background: #fff;
-    --color-text-main: #000;
+    --color-text-main: #080708;
     --color-text-sub: #4c505b;
     --color-box-background: #efefef;
 
     --color-price: #d79b59;
     --color-error: #EF4836;
+    --color-discount:#EE6969;
+  
+    --color-primary-action: #FBDCCE;
+    --color-primary-action-content:#9E8376;
+    --color-icon-details: var(--color-primary-action);
+      
+    /* Properties */
+    --content-padding: 50px;
+    --content-max-width:1800px;
+
+
+    /* How images should behave in their parent container (cover, fill, contain) */
+    --image-object-fit:cover;
+
   }
 
   /* Uncomment this to enable dark mode */
@@ -22,7 +45,9 @@ export default createGlobalStyle`
       --color-box-background: #555;
     }
   } */
-  
+  /* path#detail {
+    fill: var(--color-icon-detail);
+  } */
   html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -30,7 +55,7 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font: 16px/1 Helvetica, Arial, Verdana, sans-serif;
+    font: 14px/1 Helvetica, Arial, Verdana, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     background: var(--color-main-background);

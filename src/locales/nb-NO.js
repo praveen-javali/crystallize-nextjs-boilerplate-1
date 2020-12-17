@@ -29,6 +29,8 @@ export default {
       relatedProduct_plural: 'Relaterte produkter',
       addToBasket: 'Legg i handlekurv',
       buy: 'KJØP',
+      outOfStock: 'Ikke på lager',
+      stock: '{{stockCount}} på lager',
       attributes: {
         color: 'Color',
         green: 'Green',

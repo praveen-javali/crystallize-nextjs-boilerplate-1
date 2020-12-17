@@ -29,6 +29,8 @@ export default {
       relatedProduct_plural: 'Related products',
       addToBasket: 'Add to Basket',
       buy: 'BUY',
+      stock: '{{stockCount}} in stock',
+      outOfStock: 'Out of stock',
       attributes: {
         color: 'Color',
         green: 'Green',

@@ -6,18 +6,19 @@ import { useBasket } from 'components/basket';
 import { useT } from 'lib/i18n';
 import { useLocale } from 'lib/app-config';
 
-import { ProductFooter, Price } from './styles';
+import {
+  ProductFooter,
+  Price,
+  DiscountDetails,
+  BeforePrice,
+  Percentage
+} from './styles';
 
-export default function BuyButton({ product, selectedVariant }) {
+export default function BuyButton({ product, selectedVariant, pricing }) {
   const basket = useBasket();
   const layout = useContext(LayoutContext);
   const t = useT();
   const locale = useLocale();
-
-  const { identifier, price, currency } =
-    selectedVariant.priceVariants.find(
-      (pv) => pv.identifier === locale.crystallizePriceVariant
-    ) || {};
 
   async function buy() {
     await layout.actions.showRight();
@@ -25,16 +26,46 @@ export default function BuyButton({ product, selectedVariant }) {
     basket.actions.addItem({
       sku: selectedVariant.sku,
       path: product.path,
-      priceVariantIdentifier: identifier || locale.crystallizePriceVariant
+      priceVariantIdentifier: pricing?.discountPrice
+        ? pricing?.discountPrice?.identifier
+        : pricing?.defaultPrice.identifier || locale.crystallizePriceVariant
     });
   }
-
   return (
     <ProductFooter>
-      <Price>
-        <strong>{t('common.price', { value: price, currency })}</strong>
-      </Price>
-      <Button width="200px" onClick={buy} disabled={!currency}>
+      {pricing?.discountPrice ? (
+        <Price discounted>
+          <strong>
+            {t('common.price', {
+              value: pricing?.discountPrice?.price,
+              currency: pricing?.discountPrice?.currency
+            })}
+          </strong>
+          <DiscountDetails>
+            <BeforePrice>
+              {t('common.price', {
+                value: pricing?.defaultPrice?.price,
+                currency: pricing?.defaultPrice?.currency
+              })}
+            </BeforePrice>
+            <Percentage>{`-${pricing?.discountPercentage}%`}</Percentage>
+          </DiscountDetails>
+        </Price>
+      ) : (
+        <Price>
+          <strong>
+            {t('common.price', {
+              value: pricing?.defaultPrice?.price,
+              currency: pricing?.defaultPrice?.currency
+            })}
+          </strong>
+        </Price>
+      )}
+      <Button
+        width="250px"
+        onClick={buy}
+        disabled={!pricing?.defaultPrice.currency}
+      >
         {t('product.addToBasket')}
       </Button>
     </ProductFooter>

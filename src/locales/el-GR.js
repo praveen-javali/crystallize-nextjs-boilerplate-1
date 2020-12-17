@@ -29,6 +29,8 @@ export default {
       relatedProduct_plural: 'Σχετικά προϊόντα',
       addToBasket: 'Προσθήκη στο καλάθι',
       buy: 'ΑΓΟΡΑ',
+      outOfStock: 'Μη διαθέσιμο',
+      stock: '{{stockCount}} σε αποθεμα',
       attributes: {
         color: 'Χρώμα',
         green: 'Πράσινο',

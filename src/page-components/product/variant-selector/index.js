@@ -1,10 +1,12 @@
+import { Image } from '@crystallize/react-image';
 import isEqual from 'lodash/isEqual';
 
 import {
   Outer,
-  // AttributeName,
+  AttributeName,
   AttributeSelector,
   AttributeButton,
+  VariantImage,
   Variant,
   Values,
   Button
@@ -13,7 +15,6 @@ import {
 function reduceAttributes(variants) {
   return variants.reduce((acc, variant) => {
     const attrs = acc;
-
     variant.attributes.forEach(({ attribute, value }) => {
       const currentAttribute = attrs[attribute];
       if (!currentAttribute) {
@@ -38,13 +39,43 @@ function attributesToObject({ attributes }) {
   );
 }
 
+function VariantAttributeValue({
+  attribute,
+  value,
+  variants,
+  selectedVariant
+}) {
+  const selectedAttributes = attributesToObject(selectedVariant);
+  selectedAttributes[attribute] = value;
+
+  // Get the most suitable variant
+  const mostSuitableVariant = variants.find((variant) => {
+    if (isEqual(selectedAttributes, attributesToObject(variant))) {
+      return true;
+    }
+    return false;
+  });
+
+  const [image] = mostSuitableVariant?.images || [];
+
+  return (
+    <div>
+      {image && (
+        <VariantImage>
+          <Image {...image} sizes="100px" />
+        </VariantImage>
+      )}
+      {value}
+    </div>
+  );
+}
+
 export default function VariantSelector({
   variants,
   selectedVariant,
   onVariantChange
 }) {
   const attributes = reduceAttributes(variants);
-
   if (!Object.keys(attributes).length) {
     return (
       <Outer>
@@ -56,6 +87,7 @@ export default function VariantSelector({
                 selected={variant.id === selectedVariant.id}
                 onClick={() => onVariantChange(variant)}
               >
+                {console.log(variant)}
                 {variant.name}
               </Button>
             </Values>
@@ -105,9 +137,9 @@ export default function VariantSelector({
         if (!selectedAttr) {
           return null;
         }
-
         return (
           <div key={attribute}>
+            <AttributeName>{attribute}</AttributeName>
             <AttributeSelector>
               {attr.map((value) => (
                 <AttributeButton
@@ -121,7 +153,12 @@ export default function VariantSelector({
                   type="button"
                   selected={value === selectedAttr.value}
                 >
-                  {value}
+                  <VariantAttributeValue
+                    attribute={attribute}
+                    value={value}
+                    variants={variants}
+                    selectedVariant={selectedVariant}
+                  />
                 </AttributeButton>
               ))}
             </AttributeSelector>
