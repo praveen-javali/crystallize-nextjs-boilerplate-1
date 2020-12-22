@@ -41,7 +41,9 @@ export default `
     type
     path
     language
-
+    shape {
+      name
+    }
     components {
       name
       type
@@ -125,6 +127,15 @@ export default `
       id
       name
       path
+      type
+      shape {
+        name
+        id
+      }
+      topics {
+        id
+        name 	
+      }
       ... on Product {
         variants {
           priceVariants {
@@ -143,8 +154,35 @@ export default `
         name
         type
         content {
+          ...singleLine
+          ...richText
           ...imageContent
           ...videoContent
+          ... on BooleanContent {
+            value
+          }
+          ... on ItemRelationsContent {
+            items {
+              id
+              name
+              type
+              path
+              ... on Product {
+                variants {
+                  priceVariants {
+                    identifier
+                    price
+                    currency
+                  }
+                  isDefault
+                  name
+                  image {
+                    ...image
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

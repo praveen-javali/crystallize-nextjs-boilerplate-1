@@ -39,9 +39,6 @@ export const Loader = styled.div`
 `;
 
 export const Specs = styled.div`
-  /* flex: 0 0 500px; */
-  /* border-left: 15px solid var(--color-main-background); */
-  /* background: var(--color-box-background); */
   ${responsive.xs} {
     border-left: 0;
     display: block;
@@ -108,7 +105,7 @@ export const ImgContainer = styled.div`
   }
 `;
 
-export const Name = styled(H1)`
+export const Title = styled(H1)`
   font-size: var(--font-size-lg);
   font-weight: 900;
 `;
@@ -173,4 +170,8 @@ export const BeforePrice = styled.div`
 export const Percentage = styled.div`
   font-weight: 600;
   padding: 5px 15px;
+`;
+
+export const RelatedContainer = styled(I)`
+  min-height: 0;
 `;

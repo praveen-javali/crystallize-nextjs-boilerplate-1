@@ -1,12 +1,12 @@
 export default function getRelativePriceVariants({ variant, locale }) {
   const defaultPrice =
-    variant.priceVariants.find(
+    variant?.priceVariants?.find(
       (pv) => pv.identifier === locale.crystallizePriceVariant
     ) || {};
 
   //Get price variant with identifier "sales" from Crystallize
   const discountPrice =
-    variant.priceVariants.find(
+    variant?.priceVariants?.find(
       (pv) => pv.identifier === locale.crystallizePriceVariantSales
     ) || null;
 

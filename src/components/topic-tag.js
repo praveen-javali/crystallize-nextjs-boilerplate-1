@@ -19,15 +19,15 @@ export const topicTagsColorMatrix = {
   },
   Organic: {
     background: '#DAF5CB',
-    color: '#66765D'
+    color: '#3F4A38'
   },
   'Eco friendly': {
     background: '#D0F0EC',
-    color: '#7C8D8B'
+    color: '#4A5554'
   },
   'New arrival': {
     background: '#F2BBAD',
-    color: '#9C7C73'
+    color: '#6D5752'
   }
 };
 

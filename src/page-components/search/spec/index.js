@@ -25,7 +25,7 @@ export default function SearchSpec({ spec, changeQuery, aggregations }) {
         {aggregations && (
           <InputFooter>
             <TotalResults>
-              {t('search.foundResults', { count: aggregations.totalResults })}
+              {/* {t('search.foundResults', { count: aggregations.totalResults })} */}
             </TotalResults>
             <OrderBy orderBy={spec.orderBy} onChange={onOrderChange} />
           </InputFooter>

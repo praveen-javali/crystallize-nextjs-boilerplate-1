@@ -10,21 +10,25 @@ export default createGlobalStyle`
     --font-size-sm: 16px;
 
     --font-size-body: 14px;
-    --font-size-tags: 12px;
-    
+    --font-size-tags: 14px;
+
+    --font-listing-name-size: 16px;
+    --font-listing-price-size: 18px;
+
     /* Colors */
     --color-main-background: #fff;
     --color-text-main: #080708;
     --color-text-sub: #4c505b;
     --color-box-background: #efefef;
 
-    --color-price: #d79b59;
+    --color-price: var(--color-text-main);
     --color-error: #EF4836;
     --color-discount:#EE6969;
   
     --color-primary-action: #FBDCCE;
     --color-primary-action-content:#9E8376;
     --color-icon-details: var(--color-primary-action);
+    --color-ui-details: var(--color-primary-action);
       
     /* Properties */
     --content-padding: 50px;
@@ -33,7 +37,6 @@ export default createGlobalStyle`
 
     /* How images should behave in their parent container (cover, fill, contain) */
     --image-object-fit:cover;
-
   }
 
   /* Uncomment this to enable dark mode */

@@ -7,14 +7,16 @@ import ShapeComponents from 'components/shape/components';
 import toText from '@crystallize/content-transformer/toText';
 import getRelativePriceVariants from 'lib/pricing';
 import { useLocale } from 'lib/app-config';
+import Collection from 'components/item-collection';
 
-import TopicTag from 'lib/topic-tag';
+import TopicTag from 'components/topic-tag';
 import VariantSelector from './variant-selector';
 import Buy from './buy';
 import query from './query';
 import SchemaOrg from './schema';
-// import Topics from 'components/topics';
 import Stock from './stock';
+import { useT } from 'lib/i18n';
+
 import {
   Outer,
   Inner,
@@ -22,11 +24,12 @@ import {
   ImgContainer,
   Actions,
   ActionsSticky,
-  Name,
+  Title,
   Summary,
   Content,
   Specs,
-  Description
+  Description,
+  RelatedContainer
 } from './styles';
 
 export async function getData({ asPath, language, preview = null }) {
@@ -43,9 +46,8 @@ export async function getData({ asPath, language, preview = null }) {
 
 export default function ProductPage({ product, preview }) {
   const locale = useLocale();
-
+  const t = useT();
   // Set the selected variant to the default
-
   const [selectedVariant, setSelectedVariant] = useState(
     product.variants.find((v) => v.isDefault)
   );
@@ -58,6 +60,7 @@ export default function ProductPage({ product, preview }) {
     locale
   });
 
+  //Find content from the GraphQl response:
   const summaryComponent = product.components?.find(
     (c) => c.name === 'Summary'
   );
@@ -65,9 +68,9 @@ export default function ProductPage({ product, preview }) {
     (c) => c.name === 'Description'
   );
   const specs = product.components?.find((c) => c.name === 'Specs');
-  // const componentsRest = product.components?.filter(
-  //   (c) => !['Summary', 'Description', 'Specs'].includes(c.name)
-  // );
+  const relatedProducts = product.components?.find(
+    (c) => c.name === 'Related products'
+  )?.content?.items;
 
   return (
     <Layout
@@ -102,7 +105,7 @@ export default function ProductPage({ product, preview }) {
           </Content>
           <Actions>
             <ActionsSticky>
-              <Name>{product.name}</Name>
+              <Title>{product.name}</Title>
 
               {summaryComponent && (
                 <Summary>
@@ -136,18 +139,17 @@ export default function ProductPage({ product, preview }) {
             />
           </Description>
         )}
+        <RelatedContainer>
+          {!!relatedProducts && (
+            <Collection
+              {...{
+                items: relatedProducts,
+                title: t('product.relatedProduct')
+              }}
+            />
+          )}
+        </RelatedContainer>
       </Outer>
-      {/* {product?.topics?.length && <Topics topicMaps={product.topics} />} */}
-
-      {/* <Content>
-
-            {specs && (
-           
-            )}
-          </Content>
-
-
-          <ShapeComponents components={componentsRest} /> */}
     </Layout>
   );
 }

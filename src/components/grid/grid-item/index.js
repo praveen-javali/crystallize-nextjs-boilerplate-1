@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import DocumentItem from 'components/item-microformat/document-item';
+import DocumentItem from 'components/microformat/document-item';
 import { screen, Button } from 'ui';
 import { useT } from 'lib/i18n';
 import { useLocale } from 'lib/app-config';

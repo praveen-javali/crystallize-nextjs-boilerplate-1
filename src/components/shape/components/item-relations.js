@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { responsive } from 'ui';
 
-import ItemMicroformat from 'components/item-microformat';
+import ItemMicroformat from 'components/microformat';
 
 const Outer = styled.ul`
   display: grid;

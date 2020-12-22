@@ -5,7 +5,7 @@ import { H1, Header, Outer } from 'ui';
 import Layout from 'components/layout';
 import { simplyFetchFromGraph } from 'lib/graph';
 import ShapeComponents from 'components/shape/components';
-import ItemMicroformat from 'components/item-microformat';
+import ItemMicroformat from 'components/microformat';
 import { useT } from 'lib/i18n';
 import toText from '@crystallize/content-transformer/toText';
 

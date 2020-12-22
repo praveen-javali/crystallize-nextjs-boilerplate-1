@@ -1,4 +1,4 @@
-import ItemMicroformat from 'components/item-microformat';
+import Microformat from 'components/microformat';
 
 import { Outer } from './styles';
 import Pagination from './pagination';
@@ -9,7 +9,7 @@ export default function SearchResults({ edges = [], navigate, pageInfo }) {
       <ul>
         {edges.map(({ cursor, node }) => (
           <li key={cursor}>
-            <ItemMicroformat item={node} />
+            <Microformat item={node} />
           </li>
         ))}
       </ul>

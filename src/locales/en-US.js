@@ -25,8 +25,8 @@ export default {
       }
     },
     product: {
-      relatedProduct: 'Related product',
-      relatedProduct_plural: 'Related products',
+      relatedProduct: 'You might also be interested in',
+      relatedProduct_plural: 'You might also be interested in',
       addToBasket: 'Add to Basket',
       buy: 'BUY',
       stock: '{{stockCount}} in stock',

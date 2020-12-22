@@ -8,8 +8,12 @@ import { simplyFetchFromGraph, simplyFetchFromSearchGraph } from 'lib/graph';
 import { urlToSpec, SEARCH_QUERY } from 'lib/search';
 import { useLocale } from 'lib/app-config';
 import toText from '@crystallize/content-transformer/toText';
+
 import { Outer, Header as H, H1 as h1, responsive } from 'ui';
-// import ShapeComponents from 'components/shape/components';
+
+import ContentTransformer from 'ui/content-transformer';
+
+import Stackable from 'components/stackable';
 
 import query from './query';
 import Spec from './spec';
@@ -19,33 +23,17 @@ import Facets from './facets';
 const Header = styled(H)`
   margin: 0;
   padding: 30px 0;
-
-  ${responsive.mdPlus} {
-    padding: 75px 70px 25px;
-  }
 `;
 
 const H1 = styled(h1)`
   padding: 0;
 `;
 
+const Description = styled.div``;
+
 const ListOuter = styled.div`
   max-width: 1600px;
   margin: 0 auto;
-
-  ${responsive.mdPlus} {
-    padding: 0 70px;
-    display: grid;
-    grid-gap: 40px;
-    grid-template-areas:
-      'facets spec'
-      'facets products';
-    grid-template-columns: 1fr 3fr;
-  }
-
-  ${responsive.lg} {
-    grid-template-columns: 1fr 4fr;
-  }
 `;
 
 function cleanFilterForTotalAggregations(filter) {
@@ -169,10 +157,11 @@ export default function SearchPage(props) {
       fn(draft);
     });
 
-    /**
+    /*
      * We need to extract the [...catalogue] query params
      * in order to get a clean set of query params to work with
      */
+
     const { catalogue, ...queryWithoutRouteInfo } = newQuery;
 
     const newQueryAsString = new URLSearchParams(
@@ -221,24 +210,35 @@ export default function SearchPage(props) {
   const title = catalogue?.searchPage?.name
     ? catalogue.searchPage.name
     : 'Search';
+
   const description = catalogue?.searchPage?.components?.find(
     (c) => c.name === 'Brief'
   )?.content?.json;
 
+  const stacks = catalogue?.searchPage?.components?.find(
+    (c) => c.name === 'Stackable content'
+  )?.content?.items;
+
   return (
     <Layout title={title} description={toText(description)}>
-      <Outer>
-        <Header>
+      <Outer style={{ padding: 0 }}>
+        {/* <Header>
           <H1>{title}</H1>
-        </Header>
+          <Description>
+            <ContentTransformer {...description} />
+          </Description>
+        </Header> */}
+        <Stackable stacks={stacks} />
         <ListOuter>
           <Spec {...data.search} spec={spec} changeQuery={changeQuery} />
-          <Facets
+
+          {/* <Facets
             aggregations={data.aggregations}
             spec={spec}
             changeQuery={changeQuery}
             totalResults={data.search.aggregations.totalResults}
-          />
+          /> */}
+
           <Results {...data.search} spec={spec} navigate={navigate} />
         </ListOuter>
       </Outer>

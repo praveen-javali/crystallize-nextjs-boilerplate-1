@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import produce from 'immer';
 
+import useMatchMedia from 'lib/use-match-media';
 import { useT } from 'lib/i18n';
 import { Button, screen } from 'ui';
 
@@ -54,30 +55,12 @@ export default function Facets({
   }, [show]);
 
   // Auto hide mobile facets filter if view is changed to desktop
+  const isMd = useMatchMedia(`(min-width: ${screen.md}px)`);
   useEffect(() => {
-    function onMediaMatch(evt) {
-      if (evt.matches && show) {
-        setShow(false);
-      }
+    if (isMd && show) {
+      setShow(false);
     }
-
-    const matcher = matchMedia(`(min-width: ${screen.md}px)`);
-
-    const isModern = 'addEventListener' in matcher;
-    if (isModern) {
-      matcher.addEventListener('change', onMediaMatch);
-    } else {
-      matcher.addListener(onMediaMatch);
-    }
-
-    return () => {
-      if (isModern) {
-        matcher.removeEventListener('change', onMediaMatch);
-      } else {
-        matcher.removeListener(onMediaMatch);
-      }
-    };
-  }, [show, setShow]);
+  }, [isMd, show, setShow]);
 
   // Reset a single facet
   function reset({ name, ...rest }) {
