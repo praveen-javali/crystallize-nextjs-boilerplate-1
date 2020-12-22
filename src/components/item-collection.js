@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
-import useResizeObserver from 'use-resize-observer';
-import useMatchMedia from 'lib/use-match-media';
+import is from 'styled-is';
 
-import Microformat from 'components/microformat';
 import { H1, screen } from 'ui';
 import ContentTransformer from 'ui/content-transformer';
+import useResizeObserver from 'lib/use-resize-observer';
+import useMatchMedia from 'lib/use-match-media';
+import useScrollEnded from 'lib/use-scroll-ended';
+import Microformat from 'components/microformat';
 
 const Outer = styled.div`
   margin-top: 8em;
@@ -32,13 +34,26 @@ const Arrow = styled.button`
   top: 50%;
   font-size: 25px;
   color: #fff;
+  opacity: 0;
+  transition: transform 150ms, opacity 150ms;
+
   &.next {
     right: 0;
-    transform: translate(50%, -60%);
+    transform: translate(50%, -60%) scale(0.5);
+
+    ${is('$show')`
+      transform: translate(50%, -60%) scale(1);
+      opacity: 1;
+    `};
   }
   &.prev {
-    transform: translate(-50%, -60%) scale(-1, 1);
+    transform: translate(-50%, -60%) scale(-0.5, 0.5);
     left: 0;
+
+    ${is('$show')`
+      transform: translate(-50%, -60%) scale(-1, 1);
+      opacity: 1;
+    `};
   }
 `;
 const Slider = styled.div`
@@ -53,6 +68,7 @@ const SliderInner = styled.div`
   scroll-padding: 0%;
   padding-bottom: 30px;
   margin-bottom: 60px;
+
   &::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
     background-color: #f5f5f5;
@@ -74,29 +90,26 @@ const Slide = styled.div`
 `;
 
 export default function ItemCollection({ title, description, items }) {
-  const { ref, width = 1 } = useResizeObserver();
+  const ref = useRef();
+  const { width } = useResizeObserver({ ref });
   const showButtons = useMatchMedia(`(min-width: ${screen.md}px)`);
   const [showPrev, setShowPrev] = useState(true);
   const [showNext, setShowNext] = useState(true);
-  // const [sliderInnerWidth, setSliderInnerWidth] = useState(99999);
 
-  const checkButtonVisibility = React.useCallback(
-    ({ width }) => {
-      const el = ref.current;
+  const checkButtonVisibility = useCallback(() => {
+    const el = ref.current;
+    if (el) {
       console.log('checkButtonVisibility');
-      if (el) {
-        const currentScroll = el.scrollLeft;
+      const currentScroll = el.scrollLeft;
 
-        setShowPrev(currentScroll > 0);
-        setShowNext(el.scrollWidth - currentScroll > width);
-      }
-    },
-    [ref, setShowPrev, setShowNext]
-  );
+      setShowPrev(currentScroll > 0);
+      setShowNext(el.scrollWidth - currentScroll > width);
+    }
+  }, [width, setShowPrev, setShowNext]);
 
   function go(direction) {
     const el = ref.current;
-    console.log(direction);
+
     if (el) {
       const currentScroll = el.scrollLeft;
 
@@ -108,9 +121,13 @@ export default function ItemCollection({ title, description, items }) {
     }
   }
 
+  // Update button state on resize
   useEffect(() => {
-    checkButtonVisibility({ width });
+    checkButtonVisibility();
   }, [width, checkButtonVisibility]);
+
+  // Update button state when scrolling has ended
+  useScrollEnded(ref, checkButtonVisibility);
 
   return (
     <Outer>
@@ -122,8 +139,8 @@ export default function ItemCollection({ title, description, items }) {
       )}
       {!!items && (
         <Slider>
-          {showButtons && showPrev && (
-            <Arrow className="prev" onClick={() => go(-1)}>
+          {showButtons && (
+            <Arrow $show={showPrev} className="prev" onClick={() => go(-1)}>
               &#10142;
             </Arrow>
           )}
@@ -134,8 +151,8 @@ export default function ItemCollection({ title, description, items }) {
               </Slide>
             ))}
           </SliderInner>
-          {showButtons && showNext && (
-            <Arrow className="next" onClick={() => go(1)}>
+          {showButtons && (
+            <Arrow $show={showNext} className="next" onClick={() => go(1)}>
               &#10142;
             </Arrow>
           )}

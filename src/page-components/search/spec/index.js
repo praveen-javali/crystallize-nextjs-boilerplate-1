@@ -1,14 +1,10 @@
 import React from 'react';
 
-import { useT } from 'lib/i18n';
-
 import { Outer, Inner, InputFooter, TotalResults } from './styles';
 
 import OrderBy from './order-by';
 
 export default function SearchSpec({ spec, changeQuery, aggregations }) {
-  const t = useT();
-
   function onOrderChange(orderBy, index) {
     changeQuery((query) => {
       if (index > 0) {

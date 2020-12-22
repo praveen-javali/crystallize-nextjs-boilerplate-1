@@ -9,9 +9,7 @@ import { urlToSpec, SEARCH_QUERY } from 'lib/search';
 import { useLocale } from 'lib/app-config';
 import toText from '@crystallize/content-transformer/toText';
 
-import { Outer, Header as H, H1 as h1, responsive } from 'ui';
-
-import ContentTransformer from 'ui/content-transformer';
+import { Outer } from 'ui';
 
 import Stackable from 'components/stackable';
 
@@ -19,17 +17,6 @@ import query from './query';
 import Spec from './spec';
 import Results from './results';
 import Facets from './facets';
-
-const Header = styled(H)`
-  margin: 0;
-  padding: 30px 0;
-`;
-
-const H1 = styled(h1)`
-  padding: 0;
-`;
-
-const Description = styled.div``;
 
 const ListOuter = styled.div`
   max-width: 1600px;

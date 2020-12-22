@@ -26,9 +26,9 @@ export async function getData({ asPath, language, preview = null }) {
 export default function FolderPage({ folder, preview }) {
   const { children } = folder;
 
-  const gridRelations = folder.components
-    ?.filter((c) => c.type === 'gridRelations')
-    ?.reduce((acc, g) => [...acc, ...(g?.content?.grids || [])], []);
+  // const gridRelations = folder.components
+  //   ?.filter((c) => c.type === 'gridRelations')
+  //   ?.reduce((acc, g) => [...acc, ...(g?.content?.grids || [])], []);
 
   const description = folder.components?.find((c) => c.name === 'Brief')
     ?.content?.json;

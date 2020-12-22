@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { responsive } from 'ui';
+
 export const H1 = styled.h1``;
 export const Outer = styled.div`
   max-width: var(--content-max-width);
