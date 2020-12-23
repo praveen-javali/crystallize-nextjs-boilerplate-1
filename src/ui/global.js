@@ -35,6 +35,9 @@ export default createGlobalStyle`
     --content-padding: 50px;
     --content-max-width:1800px;
 
+    /* Grid properties */
+    --grid-row-height: 300px;
+
     /* Product microformat */
     --microformat-product-height-xl:550px;
     --microformat-product-height-lg:500px;

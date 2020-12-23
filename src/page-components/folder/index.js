@@ -2,7 +2,7 @@ import React from 'react';
 
 import { simplyFetchFromGraph } from 'lib/graph';
 import Layout from 'components/layout';
-// import Grid, { GridItem } from 'components/grid';
+import Grid, { GridItem } from 'components/grid';
 import Microformat from 'components/microformat';
 import toText from '@crystallize/content-transformer/toText';
 import { List, Outer, SubNavigation, Item } from './styles';
@@ -26,9 +26,9 @@ export async function getData({ asPath, language, preview = null }) {
 export default function FolderPage({ folder, preview }) {
   const { children } = folder;
 
-  // const gridRelations = folder.components
-  //   ?.filter((c) => c.type === 'gridRelations')
-  //   ?.reduce((acc, g) => [...acc, ...(g?.content?.grids || [])], []);
+  const gridRelations = folder.components
+    ?.filter((c) => c.type === 'gridRelations')
+    ?.reduce((acc, g) => [...acc, ...(g?.content?.grids || [])], []);
 
   const description = folder.components?.find((c) => c.name === 'Brief')
     ?.content?.json;
@@ -38,6 +38,7 @@ export default function FolderPage({ folder, preview }) {
     ?.content?.items;
 
   const subChildrenNavigation = children?.filter((c) => c.type === 'folder');
+
   return (
     <Layout
       title={folder.name}
@@ -54,6 +55,17 @@ export default function FolderPage({ folder, preview }) {
             ))}
           </SubNavigation>
         )}
+        {gridRelations?.length > 0 &&
+          gridRelations?.map((grid, index) => (
+            <Grid
+              key={index}
+              model={grid}
+              cellComponent={({ cell }) => (
+                <GridItem data={cell.item} gridCell={cell} />
+              )}
+            />
+          ))}
+
         <Stackable stacks={stacks} />
         <List>
           {children
@@ -64,19 +76,6 @@ export default function FolderPage({ folder, preview }) {
               </Item>
             ))}
         </List>
-        {/* {gridRelations?.length > 0
-          ? gridRelations?.map((grid, index) => (
-              <Grid
-                key={index}
-                model={grid}
-                cellComponent={({ cell }) => (
-                  <GridItem data={cell.item} gridCell={cell} />
-                )}
-              />
-            ))
-          : children && (
-           
-            )} */}
       </Outer>
     </Layout>
   );
