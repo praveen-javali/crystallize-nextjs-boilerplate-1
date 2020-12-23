@@ -5,14 +5,7 @@ import { screen, H3 } from 'ui';
 import ContentTransformer from 'ui/content-transformer';
 import VideoPlayer from 'components/video-player';
 
-import {
-  Outer,
-  Text,
-  MediaWrapper,
-  MediaInner,
-  Img,
-  Description
-} from './styles';
+import { Outer, Text, MediaWrapper, Img, Description } from './styles';
 
 export default function DocumentItem({ data, colSpan = '4' }) {
   if (!data) {
@@ -20,7 +13,6 @@ export default function DocumentItem({ data, colSpan = '4' }) {
   }
 
   const { name, path } = data;
-
   let image;
   const images = data.components?.find((c) => c.type === 'images');
   image = images?.content?.images?.[0];
@@ -47,26 +39,13 @@ export default function DocumentItem({ data, colSpan = '4' }) {
       />
     );
   } else {
-    return (
-      <Link href={path} passHref>
-        <Outer span={colSpan}>
-          <Text>
-            <H3>{name}</H3>
-            <Description>
-              <ContentTransformer {...description?.content?.json} />
-            </Description>
-          </Text>
-        </Outer>
-      </Link>
-    );
+    media = null;
   }
 
   return (
     <Link href={path} passHref>
       <Outer span={colSpan}>
-        <MediaWrapper>
-          <MediaInner>{media && media}</MediaInner>
-        </MediaWrapper>
+        {!!media && <MediaWrapper>{media}</MediaWrapper>}
         <Text>
           <H3>{name}</H3>
           <Description>

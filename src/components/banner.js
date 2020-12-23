@@ -4,7 +4,6 @@ import ContentTransformer from 'ui/content-transformer';
 
 const Img = styled.div`
   width: 70%;
-
   img {
     width: 100%;
   }

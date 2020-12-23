@@ -5,8 +5,9 @@ export default createGlobalStyle`
     /* Typography */
     --font-family-main: "Trebuchet MS", sans-serif;
 
+    --font-size-xl: 40px;
     --font-size-lg: 32px;
-    --font-size-md: 22px;
+    --font-size-md: 25px;
     --font-size-sm: 16px;
 
     --font-size-body: 14px;
@@ -26,7 +27,7 @@ export default createGlobalStyle`
     --color-discount:#EE6969;
   
     --color-primary-action: #FBDCCE;
-    --color-primary-action-content:#9E8376;
+    --color-primary-action-content:#080708;
     --color-icon-details: var(--color-primary-action);
     --color-ui-details: var(--color-primary-action);
       
@@ -34,15 +35,26 @@ export default createGlobalStyle`
     --content-padding: 50px;
     --content-max-width:1800px;
 
-    /* Product grid layout */
-    --content-layout-container-height-xl:500px;
-    --content-layout-container-height-lg:500px;
-    --content-layout-container-height-md:500px;
-    --content-layout-container-height-sm:500px;
-    --content-layout-container-height-xs:500px;
+    /* Product microformat */
+    --microformat-product-height-xl:550px;
+    --microformat-product-height-lg:500px;
+    --microformat-product-height-md:500px;
+    --microformat-product-height-sm:500px;
+    --microformat-product-height-xs:550px;
+    --microformat-product-image-fit: cover;
+    --microformat-product-background: #efefef;
+
+    /* Document microformat */
+    --microformat-document-height-xl:750px;
+    --microformat-document-height-lg:750px;
+    --microformat-document-height-md:750px;
+    --microformat-document-height-sm:750px;
+    --microformat-document-height-xs:750px;
+    --microformat-document-image-fit: cover;
+    --microformat-document-background: var(--color-primary-action);
 
     /* How images should behave in their parent container (cover, fill, contain) */
-    --image-object-fit:cover;
+    --image-object-fit:contain;
   }
 
   /* Uncomment this to enable dark mode */

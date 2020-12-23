@@ -6,18 +6,23 @@ export const Outer = styled.div`
   margin: 0 auto;
   padding: 0 100px;
 `;
-export const List = styled.div``;
+export const List = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+`;
 
 export const SubNavigation = styled.div`
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 50px;
+  border-bottom: 1px solid #dfdfdf;
 `;
 
-export const Divider = styled.div`
-  margin-top: 25px;
-  margin-bottom: 35px;
-  height: 1px;
-  /* background: #dfdfdf; */
-  width: 100%;
-  display: block;
+export const Item = styled.div`
+  &.item-proudct {
+  }
+
+  &.item-document {
+    grid-column-end: span 2;
+  }
 `;

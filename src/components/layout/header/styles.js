@@ -11,7 +11,7 @@ export const Outer = styled.header`
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  margin: 0 auto 0;
+  margin: 0 auto 50px;
 
   ${responsive.smAndLess} {
     padding: 10px 90px 10px 20px;

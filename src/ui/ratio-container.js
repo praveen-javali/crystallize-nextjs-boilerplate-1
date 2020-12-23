@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Outer = styled.div`
-  padding-top: ${(9 / 16) * 100}%;
+  padding-top: ${(p) => `${p.ratio * 100}%`};
   position: relative;
 `;
 
@@ -15,9 +15,9 @@ const Inner = styled.div`
   display: flex;
 `;
 
-export default function WidescreenRatio({ children, ...rest }) {
+export default function RatioContainer({ ratio = 9 / 16, children, ...rest }) {
   return (
-    <Outer {...rest}>
+    <Outer ratio={ratio} {...rest}>
       <Inner>{children}</Inner>
     </Outer>
   );

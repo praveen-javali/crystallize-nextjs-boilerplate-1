@@ -5,7 +5,7 @@ import Layout from 'components/layout';
 // import Grid, { GridItem } from 'components/grid';
 import Microformat from 'components/microformat';
 import toText from '@crystallize/content-transformer/toText';
-import { List, Outer, SubNavigation, Divider } from './styles';
+import { List, Outer, SubNavigation, Item } from './styles';
 import Stackable from 'components/stackable';
 import PageHeader from 'components/page-header';
 
@@ -37,6 +37,7 @@ export default function FolderPage({ folder, preview }) {
   const stacks = folder?.components?.find((c) => c.name === 'Stackable content')
     ?.content?.items;
 
+  const subChildrenNavigation = children?.filter((c) => c.type === 'folder');
   return (
     <Layout
       title={folder.name}
@@ -45,23 +46,22 @@ export default function FolderPage({ folder, preview }) {
       preview={preview}
     >
       <Outer>
-        <Divider />
-
         <PageHeader {...{ title: folder?.name, description, image: icon }} />
-        <SubNavigation>
-          {children
-            ?.filter((c) => c.type === 'folder')
-            ?.map((item, i) => (
+        {!!subChildrenNavigation?.length && (
+          <SubNavigation>
+            {subChildrenNavigation?.map((item, i) => (
               <Microformat item={item} key={i} />
             ))}
-        </SubNavigation>
-        <Divider />
+          </SubNavigation>
+        )}
         <Stackable stacks={stacks} />
         <List>
           {children
             ?.filter((c) => c.type !== 'folder')
             ?.map((item, i) => (
-              <Microformat item={item} key={i} />
+              <Item className={`item-${item?.type}`} key={i}>
+                <Microformat item={item} />
+              </Item>
             ))}
         </List>
         {/* {gridRelations?.length > 0

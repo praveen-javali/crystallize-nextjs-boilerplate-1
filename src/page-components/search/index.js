@@ -8,6 +8,7 @@ import { simplyFetchFromGraph, simplyFetchFromSearchGraph } from 'lib/graph';
 import { urlToSpec, SEARCH_QUERY } from 'lib/search';
 import { useLocale } from 'lib/app-config';
 import toText from '@crystallize/content-transformer/toText';
+import PageHeader from 'components/page-header';
 
 import { Outer } from 'ui';
 
@@ -209,12 +210,7 @@ export default function SearchPage(props) {
   return (
     <Layout title={title} description={toText(description)}>
       <Outer style={{ padding: 0 }}>
-        {/* <Header>
-          <H1>{title}</H1>
-          <Description>
-            <ContentTransformer {...description} />
-          </Description>
-        </Header> */}
+        <PageHeader {...{ title, description }} />
         <Stackable stacks={stacks} />
         <ListOuter>
           <Spec {...data.search} spec={spec} changeQuery={changeQuery} />

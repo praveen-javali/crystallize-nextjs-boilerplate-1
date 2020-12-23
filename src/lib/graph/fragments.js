@@ -167,6 +167,22 @@ export default `
               name
               type
               path
+              ... on Item {
+                components {
+                  name
+                  type
+                  meta {
+                    key
+                    value
+                  }
+                  content {
+                    ...singleLine
+                    ...richText
+                    ...imageContent
+                    ...videoContent
+                  }
+                }
+              }
               ... on Product {
                 variants {
                   priceVariants {

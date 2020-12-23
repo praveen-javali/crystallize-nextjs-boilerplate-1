@@ -9,7 +9,7 @@ import useScrollEnded from 'lib/use-scroll-ended';
 import Microformat from 'components/microformat';
 
 const Outer = styled.div`
-  margin-top: 8em;
+  margin-top: 100px;
 `;
 
 const Title = styled(H1)`
@@ -70,8 +70,8 @@ const SliderInner = styled.div`
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-padding: 0%;
-  padding-bottom: 120px;
-  /* margin-bottom: 30px; */
+  padding-bottom: 60px;
+  margin-bottom: 60px;
 
   &::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
@@ -89,28 +89,47 @@ const SliderInner = styled.div`
 `;
 const Slide = styled.div`
   scroll-snap-align: start;
-  min-width: 40%;
-  width: 40%;
-  height: var(--content-layout-container-height-xs);
-  ${responsive.xl} {
-    height: var(--content-layout-container-height-xl);
-    width: 20%;
-    min-width: 20%;
-  }
-  ${responsive.lg} {
-    height: var(--content-layout-container-height-lg);
-    min-width: 25%;
-    width: 25%;
-  }
-  ${responsive.md} {
-    height: var(--content-layout-container-height-md);
+  &.type-document {
     width: 33.333%;
     min-width: 33.333%;
+    height: var(--microformat-document-height-xs);
+    ${responsive.xl} {
+      height: var(--microformat-document-height-xl);
+    }
+    ${responsive.lg} {
+      height: var(--microformat-document-height-lg);
+    }
+    ${responsive.md} {
+      height: var(--microformat-document-height-md);
+    }
+    ${responsive.sm} {
+      height: var(--microformat-document-height-sm);
+    }
   }
-  ${responsive.sm} {
-    height: var(--content-layout-container-height-sm);
-    width: 50%;
-    min-width: 50%;
+  &.type-product {
+    min-width: 40%;
+    width: 40%;
+    height: var(--microformat-product-height-xs);
+    ${responsive.xl} {
+      height: var(--microformat-product-height-xl);
+      width: 20%;
+      min-width: 20%;
+    }
+    ${responsive.lg} {
+      height: var(--microformat-product-height-lg);
+      min-width: 25%;
+      width: 25%;
+    }
+    ${responsive.md} {
+      height: var(--microformat-product-height-md);
+      width: 33.333%;
+      min-width: 33.333%;
+    }
+    ${responsive.sm} {
+      height: var(--microformat-product-height-sm);
+      width: 50%;
+      min-width: 50%;
+    }
   }
 `;
 
@@ -175,7 +194,7 @@ export default function ItemCollection({ title, description, items }) {
           </Arrow>
           <SliderInner ref={ref}>
             {items?.map((item) => (
-              <Slide key={item.id}>
+              <Slide key={item.id} className={`type-${item?.type}`}>
                 <Microformat item={item} />
               </Slide>
             ))}

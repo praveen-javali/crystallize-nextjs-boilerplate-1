@@ -3,12 +3,12 @@ import styled from 'styled-components';
 export const Outer = styled.a`
   height: 100%;
   margin-bottom: 5px;
-  color: var(--color-main-background);
+  color: var(--color-primary-action-content);
   position: relative;
   display: flex;
   align-items: center;
   /* border: 1px solid #dfdfdf; */
-  background: var(--color-icon-details);
+  background: var(--color-primary-action);
   border-radius: 4px;
   padding: 3px 15px;
   margin-right: 5px;
@@ -38,6 +38,6 @@ export const Text = styled.div`
     text-align: center;
     font-weight: 500;
     margin: 0 0 0 5px;
-    color: black;
+    color: inherit;
   }
 `;

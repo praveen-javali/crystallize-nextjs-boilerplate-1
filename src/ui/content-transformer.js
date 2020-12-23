@@ -32,12 +32,12 @@ const ContentTransformerOuter = styled.div`
   p,
   li {
     font-size: 1.1rem;
-    line-height: 1.6rem;
+    line-height: 1.4em;
   }
 
   p {
     margin: 0 0 0.5em;
-    line-height: 1.8;
+    line-height: 1.4e;
   }
 
   pre {
