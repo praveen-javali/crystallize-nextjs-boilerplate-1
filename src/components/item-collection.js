@@ -2,10 +2,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import is from 'styled-is';
 
-import { H1, screen } from 'ui';
+import { H1, responsive } from 'ui';
 import ContentTransformer from 'ui/content-transformer';
 import useResizeObserver from 'lib/use-resize-observer';
-import useMatchMedia from 'lib/use-match-media';
 import useScrollEnded from 'lib/use-scroll-ended';
 import Microformat from 'components/microformat';
 
@@ -36,6 +35,11 @@ const Arrow = styled.button`
   color: #fff;
   opacity: 0;
   transition: transform 150ms, opacity 150ms;
+  display: none;
+
+  ${responsive.mdPlus} {
+    display: block;
+  }
 
   &.next {
     right: 0;
@@ -92,20 +96,22 @@ const Slide = styled.div`
 export default function ItemCollection({ title, description, items }) {
   const ref = useRef();
   const { width } = useResizeObserver({ ref });
-  const showButtons = useMatchMedia(`(min-width: ${screen.md}px)`);
-  const [showPrev, setShowPrev] = useState(true);
-  const [showNext, setShowNext] = useState(true);
+  const [scrollState, setScrollState] = useState('beginning');
 
   const checkButtonVisibility = useCallback(() => {
     const el = ref.current;
     if (el) {
-      console.log('checkButtonVisibility');
       const currentScroll = el.scrollLeft;
 
-      setShowPrev(currentScroll > 0);
-      setShowNext(el.scrollWidth - currentScroll > width);
+      if (el.scrollWidth - currentScroll === width) {
+        setScrollState('end');
+      } else if (currentScroll === 0) {
+        setScrollState('beginning');
+      } else {
+        setScrollState('mid');
+      }
     }
-  }, [width, setShowPrev, setShowNext]);
+  }, [width, setScrollState]);
 
   function go(direction) {
     const el = ref.current;
@@ -139,11 +145,13 @@ export default function ItemCollection({ title, description, items }) {
       )}
       {!!items && (
         <Slider>
-          {showButtons && (
-            <Arrow $show={showPrev} className="prev" onClick={() => go(-1)}>
-              &#10142;
-            </Arrow>
-          )}
+          <Arrow
+            $show={scrollState !== 'beginning'}
+            className="prev"
+            onClick={() => go(-1)}
+          >
+            &#10142;
+          </Arrow>
           <SliderInner ref={ref}>
             {items?.map((item) => (
               <Slide key={item.id}>
@@ -151,11 +159,13 @@ export default function ItemCollection({ title, description, items }) {
               </Slide>
             ))}
           </SliderInner>
-          {showButtons && (
-            <Arrow $show={showNext} className="next" onClick={() => go(1)}>
-              &#10142;
-            </Arrow>
-          )}
+          <Arrow
+            $show={scrollState !== 'end'}
+            className="next"
+            onClick={() => go(1)}
+          >
+            &#10142;
+          </Arrow>
         </Slider>
       )}
     </Outer>
