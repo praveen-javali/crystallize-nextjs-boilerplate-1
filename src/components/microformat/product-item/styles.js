@@ -14,6 +14,8 @@ export const Inner = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ImageWrapper = styled.div`
@@ -21,8 +23,8 @@ export const ImageWrapper = styled.div`
   z-index: 1;
   overflow: hidden;
   width: 100%;
+  height: 100%;
   border: 1px solid #dfdfdf;
-  height: 500px;
   background: var(--color-box-background);
 `;
 

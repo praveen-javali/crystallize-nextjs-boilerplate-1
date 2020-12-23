@@ -34,6 +34,12 @@ export default createGlobalStyle`
     --content-padding: 50px;
     --content-max-width:1800px;
 
+    /* Product grid layout */
+    --content-layout-container-height-xl:500px;
+    --content-layout-container-height-lg:500px;
+    --content-layout-container-height-md:500px;
+    --content-layout-container-height-sm:500px;
+    --content-layout-container-height-xs:500px;
 
     /* How images should behave in their parent container (cover, fill, contain) */
     --image-object-fit:cover;

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import is from 'styled-is';
 
-import { H1, screen } from 'ui';
+import { H1, screen, responsive } from 'ui';
 import ContentTransformer from 'ui/content-transformer';
 import useResizeObserver from 'lib/use-resize-observer';
 import useMatchMedia from 'lib/use-match-media';
@@ -66,8 +66,8 @@ const SliderInner = styled.div`
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-padding: 0%;
-  padding-bottom: 30px;
-  margin-bottom: 60px;
+  padding-bottom: 120px;
+  /* margin-bottom: 30px; */
 
   &::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
@@ -84,9 +84,30 @@ const SliderInner = styled.div`
   }
 `;
 const Slide = styled.div`
-  width: 20%;
   scroll-snap-align: start;
-  min-width: 20%;
+  min-width: 40%;
+  width: 40%;
+  height: var(--content-layout-container-height-xs);
+  ${responsive.xl} {
+    height: var(--content-layout-container-height-xl);
+    width: 20%;
+    min-width: 20%;
+  }
+  ${responsive.lg} {
+    height: var(--content-layout-container-height-lg);
+    min-width: 25%;
+    width: 25%;
+  }
+  ${responsive.md} {
+    height: var(--content-layout-container-height-md);
+    width: 33.333%;
+    min-width: 33.333%;
+  }
+  ${responsive.sm} {
+    height: var(--content-layout-container-height-sm);
+    width: 50%;
+    min-width: 50%;
+  }
 `;
 
 export default function ItemCollection({ title, description, items }) {
@@ -99,7 +120,6 @@ export default function ItemCollection({ title, description, items }) {
   const checkButtonVisibility = useCallback(() => {
     const el = ref.current;
     if (el) {
-      console.log('checkButtonVisibility');
       const currentScroll = el.scrollLeft;
 
       setShowPrev(currentScroll > 0);
