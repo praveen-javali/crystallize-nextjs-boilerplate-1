@@ -17,7 +17,6 @@ export default function PageHeader({ title, description }) {
     <Outer>
       <H1>{title}</H1>
       <ContentTransformer {...description} />
-      {/* <Image {...image} /> */}
     </Outer>
   );
 }

@@ -1,14 +1,14 @@
 import React from 'react';
-import ContentTransformer from 'ui/content-transformer';
+// import ContentTransformer from 'ui/content-transformer';
 
-import { H1, Header, Outer } from 'ui';
+import { Outer } from 'ui';
 import Layout from 'components/layout';
 import { simplyFetchFromGraph } from 'lib/graph';
 import ShapeComponents from 'components/shape/components';
 import ItemMicroformat from 'components/microformat';
 import { useT } from 'lib/i18n';
 import toText from '@crystallize/content-transformer/toText';
-
+import PageHeader from 'components/page-header';
 import query from './query';
 import { HeroImage, Img, List, H2, Related } from './styles';
 
@@ -45,10 +45,8 @@ export default function DocumentPage({ document, preview }) {
       preview={preview}
     >
       <Outer>
-        <Header centerContent>
-          <H1>{title}</H1>
-          <ContentTransformer {...description?.content?.json} />
-        </Header>
+        <PageHeader {...{ title, description: description?.content?.json }} />
+
         <HeroImage>
           {images?.content?.images?.map((img, i) => (
             <Img

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import { isNot } from 'styled-is';
 
+// import { responsive } from 'ui';
 export const Paragraphs = styled.div``;
 
 export const Outer = styled.div`
@@ -10,6 +12,12 @@ export const Outer = styled.div`
   &:nth-child(even) {
     grid-template-areas: 'media media media media media media media . content content content content';
   }
+  ${isNot('text')`
+    grid-template-areas: 'media media media media media media media media media media media media' ;
+  `}
+  ${isNot('media')`
+    grid-template-areas: '. . . . content content content content . . . .';
+  `}
 `;
 
 export const Title = styled.div`

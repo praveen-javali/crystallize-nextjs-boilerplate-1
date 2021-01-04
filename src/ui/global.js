@@ -39,11 +39,11 @@ export default createGlobalStyle`
     --grid-row-height: 300px;
 
     /* Product microformat */
-    --microformat-product-height-xl:550px;
+    --microformat-product-height-xl:500px;
     --microformat-product-height-lg:500px;
     --microformat-product-height-md:500px;
     --microformat-product-height-sm:500px;
-    --microformat-product-height-xs:550px;
+    --microformat-product-height-xs:500px;
     --microformat-product-image-fit: cover;
     --microformat-product-background: #efefef;
 

@@ -12,6 +12,11 @@ export default function SearchResults({ edges = [], navigate, pageInfo }) {
             <Microformat item={node} />
           </li>
         ))}
+        {edges.map(({ cursor, node }) => (
+          <li key={cursor}>
+            <Microformat item={node} />
+          </li>
+        ))}
       </ul>
       <Pagination navigate={navigate} pageInfo={pageInfo} />
     </Outer>

@@ -20,6 +20,7 @@ export const SubNavigation = styled.div`
 
 export const Item = styled.div`
   &.item-proudct {
+    grid-column-end: span 1;
   }
 
   &.item-document {

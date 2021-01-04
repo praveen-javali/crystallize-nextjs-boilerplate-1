@@ -51,18 +51,6 @@ export const Description = styled(I)`
   color: var(--color-text-sub);
   padding: 100px;
   margin-top: 100px;
-  h2:empty {
-    display: none;
-  }
-
-  ul {
-    margin: 1rem 0;
-    padding-left: 1.2rem;
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-  }
 `;
 
 export const Media = styled.div`

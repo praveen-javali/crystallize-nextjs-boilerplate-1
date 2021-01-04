@@ -3,7 +3,7 @@ import is from 'styled-is';
 import { responsive } from 'ui';
 
 export const SearchWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   left: 0;
   width: 100%;
   top: 0;

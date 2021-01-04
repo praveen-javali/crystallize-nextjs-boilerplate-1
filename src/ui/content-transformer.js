@@ -20,19 +20,30 @@ const maxWidth = '600px';
 const ContentTransformerOuter = styled.div`
   font-size: var(--font-size-body);
   p,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h2 {
     margin: 0 auto;
+    padding-top: 0;
     text-align: left;
     max-width: ${maxWidth};
+    &:empty {
+      display: none;
+    }
   }
   p,
   li {
     font-size: 1.1rem;
     line-height: 1.4em;
+    &:empty {
+      display: none;
+    }
+  }
+  ul {
+    margin: 1rem 0;
+    padding-left: 1.2rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
   }
 
   p {
@@ -60,10 +71,13 @@ const ContentTransformerOuter = styled.div`
     line-height: 140%;
     align-items: center;
     margin: 2em 0;
+    &:empty {
+      display: none;
+    }
     &:after {
       left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 20px;
+      /* transform: translateY(-50%); */
       font-size: 3em;
       position: absolute;
       content: open-quote;
