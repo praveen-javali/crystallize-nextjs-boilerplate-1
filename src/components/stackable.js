@@ -1,4 +1,5 @@
 import ItemCollection from 'components/item-collection';
+import GridCollection from 'components/grid-collection';
 import Banner from 'components/banner';
 
 const StackRenderer = ({ stack }) => {
@@ -14,6 +15,17 @@ const StackRenderer = ({ stack }) => {
       };
 
       return <ItemCollection {...itemCollectionContent} />;
+    }
+    case 'Grid collection': {
+      const gridCollectionContent = {
+        title: stack?.components?.find((c) => c.name === 'Title')?.content
+          ?.text,
+        description: stack?.components?.find((c) => c.name === 'Description')
+          ?.content?.json,
+        grids: stack?.components?.find((c) => c.name === 'Grid')?.content?.grids
+      };
+      console.log(stack);
+      return <GridCollection {...gridCollectionContent} />;
     }
     case 'Banner': {
       const bannerContent = {

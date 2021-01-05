@@ -22,7 +22,6 @@ import {
 export default function ProductItem({ data }) {
   const t = useT();
   const locale = useLocale();
-  // console.log('data', data);
   if (!data) {
     return null;
   }

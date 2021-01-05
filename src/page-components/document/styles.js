@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { Image } from '@crystallize/react-image';
 
 import { H2 as H, responsive } from 'ui';
+export const Outer = styled.div`
+  max-width: 700px;
+  margin: 0 auto;
+`;
 
 export const HeroImage = styled.div`
   display: grid;

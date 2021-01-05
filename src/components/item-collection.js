@@ -9,7 +9,7 @@ import useScrollEnded from 'lib/use-scroll-ended';
 import Microformat from 'components/microformat';
 
 const Outer = styled.div`
-  margin-top: 100px;
+  margin-bottom: 100px;
 `;
 
 const Title = styled(H1)`
@@ -17,9 +17,17 @@ const Title = styled(H1)`
   font-weight: 600;
   margin: 0 4px;
   margin-bottom: 15px;
+  ${responsive.xs} {
+    padding: var(--content-padding-xs);
+    padding-right: 10px;
+  }
 `;
 const Description = styled.div`
-  margin: 0 4px;
+  margin: 0 4px 45px;
+  ${responsive.xs} {
+    padding: var(--content-padding-xs);
+    padding-right: 10px;
+  }
 `;
 const Arrow = styled.button`
   position: absolute;
@@ -86,29 +94,51 @@ const SliderInner = styled.div`
   &::-webkit-scrollbar-thumb {
     background-color: #000;
   }
+  ${responsive.xs} {
+    padding-bottom: 30px;
+    scroll-padding: 25px;
+    > *:first-child {
+      margin-left: 25px;
+    }
+    &::-webkit-scrollbar-track {
+      margin-left: 25px;
+    }
+    &::-webkit-scrollbar {
+      background: transparent;
+    }
+  }
 `;
 const Slide = styled.div`
   scroll-snap-align: start;
+
   &.type-document {
-    width: 33.333%;
-    min-width: 33.333%;
+    width: 85%;
+    min-width: 85%;
     height: var(--microformat-document-height-xs);
     ${responsive.xl} {
+      width: 33.333%;
+      min-width: 33.333%;
       height: var(--microformat-document-height-xl);
     }
     ${responsive.lg} {
+      width: 33.333%;
+      min-width: 33.333%;
       height: var(--microformat-document-height-lg);
     }
     ${responsive.md} {
+      width: 33.333%;
+      min-width: 33.333%;
       height: var(--microformat-document-height-md);
     }
     ${responsive.sm} {
+      width: 33.333%;
+      min-width: 33.333%;
       height: var(--microformat-document-height-sm);
     }
   }
   &.type-product {
-    min-width: 40%;
-    width: 40%;
+    min-width: 45%;
+    width: 45%;
     height: var(--microformat-product-height-xs);
     ${responsive.xl} {
       height: var(--microformat-product-height-xl);

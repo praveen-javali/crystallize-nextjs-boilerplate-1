@@ -38,6 +38,7 @@ const Outer = styled.div`
   margin-top: 15px;
   display: flex;
   align-items: center;
+  margin-bottom: 100px;
   border: 1px solid #dfdfdf;
   &.use-overlay {
     display: block;

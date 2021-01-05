@@ -1,7 +1,6 @@
 import React from 'react';
 // import ContentTransformer from 'ui/content-transformer';
 
-import { Outer } from 'ui';
 import Layout from 'components/layout';
 import { simplyFetchFromGraph } from 'lib/graph';
 import ShapeComponents from 'components/shape/components';
@@ -10,7 +9,7 @@ import { useT } from 'lib/i18n';
 import toText from '@crystallize/content-transformer/toText';
 import PageHeader from 'components/page-header';
 import query from './query';
-import { HeroImage, Img, List, H2, Related } from './styles';
+import { HeroImage, Img, List, H2, Related, Outer } from './styles';
 
 export async function getData({ asPath, language, preview = null }) {
   const { data } = await simplyFetchFromGraph({

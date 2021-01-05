@@ -23,7 +23,7 @@ export async function getData({ asPath, language, preview = null }) {
   return { ...data, preview };
 }
 
-export default function FolderPage({ folder, preview }) {
+export default function FolderPage({ folder, preview, hidePageHeader }) {
   const { children } = folder;
 
   const gridRelations = folder.components
@@ -34,6 +34,8 @@ export default function FolderPage({ folder, preview }) {
     ?.content?.json;
 
   const icon = folder.components?.find((c) => c.name === 'Icon');
+  const title = folder.components?.find((c) => c.name === 'Title')?.content
+    ?.text;
   const stacks = folder?.components?.find((c) => c.name === 'Stackable content')
     ?.content?.items;
 
@@ -41,19 +43,26 @@ export default function FolderPage({ folder, preview }) {
 
   return (
     <Layout
-      title={folder.name}
+      title={title || folder.name}
       description={toText(description)}
       image={icon?.content?.images?.[0]?.url}
       preview={preview}
     >
       <Outer>
-        <PageHeader {...{ title: folder?.name, description, image: icon }} />
-        {!!subChildrenNavigation?.length && (
-          <SubNavigation>
-            {subChildrenNavigation?.map((item, i) => (
-              <Microformat item={item} key={i} />
-            ))}
-          </SubNavigation>
+        {!hidePageHeader && (
+          <>
+            <PageHeader
+              {...{ title: title || folder.name, description, image: icon }}
+            />
+
+            {!!subChildrenNavigation?.length && (
+              <SubNavigation>
+                {subChildrenNavigation?.map((item, i) => (
+                  <Microformat item={item} key={i} />
+                ))}
+              </SubNavigation>
+            )}
+          </>
         )}
         {gridRelations?.length > 0 &&
           gridRelations?.map((grid, index) => (

@@ -14,7 +14,7 @@ import {
   Nav,
   Btn,
   Logo,
-  NavActions,
+  // NavActions,
   NavList,
   NavListItem,
   PreviewBar,
@@ -55,11 +55,10 @@ export default function Header({ simple, preview }) {
             ))}
           </NavList>
         </Nav>
-        <NavActions open={navOpen}>
-          <LocaleSwitcher />
-        </NavActions>
+        {/* <NavActions open={navOpen}></NavActions> */}
         {!simple && (
           <IconBar>
+            <LocaleSwitcher />
             <Link href="/account">
               <Btn as="a">
                 <IconUser />

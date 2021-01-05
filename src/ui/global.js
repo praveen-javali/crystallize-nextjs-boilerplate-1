@@ -10,7 +10,7 @@ export default createGlobalStyle`
     --font-size-md: 25px;
     --font-size-sm: 16px;
 
-    --font-size-body: 14px;
+    --font-size-body: 20px;
     --font-size-tags: 14px;
 
     --font-listing-name-size: 16px;
@@ -34,16 +34,14 @@ export default createGlobalStyle`
     /* Properties */
     --content-padding: 50px;
     --content-max-width:1800px;
-
-    /* Grid properties */
-    --grid-row-height: 300px;
+    --content-padding-xs:0 0 0 25px;
 
     /* Product microformat */
     --microformat-product-height-xl:500px;
     --microformat-product-height-lg:500px;
     --microformat-product-height-md:500px;
     --microformat-product-height-sm:500px;
-    --microformat-product-height-xs:500px;
+    --microformat-product-height-xs:300px;
     --microformat-product-image-fit: cover;
     --microformat-product-background: #efefef;
 
@@ -52,12 +50,15 @@ export default createGlobalStyle`
     --microformat-document-height-lg:750px;
     --microformat-document-height-md:750px;
     --microformat-document-height-sm:750px;
-    --microformat-document-height-xs:750px;
+    --microformat-document-height-xs:450px;
     --microformat-document-image-fit: cover;
     --microformat-document-background: var(--color-primary-action);
 
     /* How images should behave in their parent container (cover, fill, contain) */
     --image-object-fit:contain;
+    
+    /* Grid properties */
+    --grid-row-height: 500px;
   }
 
   /* Uncomment this to enable dark mode */

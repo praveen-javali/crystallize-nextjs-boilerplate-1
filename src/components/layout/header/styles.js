@@ -14,23 +14,28 @@ export const Outer = styled.header`
   margin: 0 auto 50px;
 
   ${responsive.smAndLess} {
-    padding: 10px 90px 10px 20px;
+    padding: 10px 65px 10px 10px;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
   }
 `;
 
 export const Logo = styled.a`
   height: 84px;
-
   display: block;
   object-fit: contain;
-
   position: relative;
   z-index: 99;
   img,
   svg {
     display: block;
     height: 100%;
+  }
+  ${responsive.xs} {
+    height: 40px;
+    width: 110px;
+    margin-left: 25px;
   }
 `;
 
@@ -120,6 +125,11 @@ export const Btn = styled.button`
   &:hover,
   &:active {
     background: rgba(0, 0, 0, 0.05);
+  }
+  ${responsive.xs} {
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
   }
 `;
 

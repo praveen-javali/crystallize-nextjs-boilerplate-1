@@ -158,6 +158,8 @@ export default `
           ...richText
           ...imageContent
           ...videoContent
+          ...gridRelations
+
           ... on BooleanContent {
             value
           }
@@ -222,6 +224,31 @@ export default `
             type
             language
             ... on Product {
+              variants {
+                id
+                name
+                sku
+                priceVariants {
+                  identifier
+                  price
+                  currency
+                }
+                stock
+                isDefault
+                attributes {
+                  attribute
+                  value
+                }
+                images {
+                  url
+                  altText
+                  variants {
+                    url
+                    width
+                    height
+                  }
+                }
+              }
               defaultVariant {
                 priceVariants {
                   identifier

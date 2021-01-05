@@ -31,7 +31,6 @@ const ContentTransformerOuter = styled.div`
   }
   p,
   li {
-    font-size: 1.1rem;
     line-height: 1.4em;
     &:empty {
       display: none;
@@ -54,7 +53,6 @@ const ContentTransformerOuter = styled.div`
   pre {
     margin-left: calc(-0.5 * var(--content-padding));
     width: calc(100% + var(--content-padding));
-    font-size: 16px;
     box-shadow: rgba(0, 0, 0, 0.05) 2px 1px 1px;
     line-height: 1.6;
     padding: 25px 50px;

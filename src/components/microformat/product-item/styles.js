@@ -44,12 +44,8 @@ export const Img = styled(Image)`
 `;
 
 export const Footer = styled.div`
-  z-index: 2;
-  width: 100%;
-  left: 0;
   width: 100%;
   padding: 5px 0;
-
   color: var(--color-text-main);
 
   h3 {

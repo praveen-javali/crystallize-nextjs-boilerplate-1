@@ -10,21 +10,13 @@ export const Outer = styled.a`
   /* border: 1px solid #dfdfdf; */
   background: var(--color-primary-action);
   border-radius: 4px;
-  padding: 3px 15px;
+  padding: 15px 25px;
   margin-right: 5px;
   transition: all 0.1s ease-in-out;
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
   &:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   }
-`;
-
-export const Icon = styled.div`
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  width: 60px;
-  /* max-height:60px */
 `;
 
 export const Text = styled.div`
