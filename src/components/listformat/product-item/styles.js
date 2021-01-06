@@ -25,7 +25,7 @@ export const ImageWrapper = styled.div`
   width: 100%;
   height: 100%;
   border: 1px solid #dfdfdf;
-  background: var(--microformat-product-background);
+  background: var(--listformat-product-background);
 `;
 
 export const Img = styled(Image)`
@@ -35,7 +35,7 @@ export const Img = styled(Image)`
 
   > img {
     display: block;
-    object-fit: var(--microformat-product-image-fit);
+    object-fit: var(--listformat-product-image-fit);
     object-position: center;
     width: 100%;
     height: 100%;

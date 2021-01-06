@@ -2,7 +2,7 @@ import DocumentItem from './document-item';
 import ProductItem from './product-item';
 import FolderItem from './folder-item';
 
-export default function ItemMicroformat({ item }) {
+export default function ItemListformat({ item }) {
   if (!item) {
     return null;
   }

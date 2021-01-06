@@ -14,9 +14,11 @@ const Title = styled(H1)`
   font-weight: 600;
   margin: 0 4px;
   margin-bottom: 15px;
+  max-width: var(--font-max-width);
 `;
 const Description = styled.div`
   margin: 0 4px 45px;
+  max-width: var(--font-max-width);
 `;
 
 export default function GridCollection({ title, description, grids }) {

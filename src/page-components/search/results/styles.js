@@ -6,7 +6,7 @@ export const Outer = styled.div`
     list-style: none;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: var(--microformat-product-height-lg);
+    grid-auto-rows: var(--listformat-product-height-lg);
     grid-gap: 15px;
 
     > li {

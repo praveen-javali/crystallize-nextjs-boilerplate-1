@@ -3,7 +3,7 @@ import React from 'react';
 import { simplyFetchFromGraph } from 'lib/graph';
 import Layout from 'components/layout';
 import Grid, { GridItem } from 'components/grid';
-import Microformat from 'components/microformat';
+import Listformat from 'components/listformat';
 import toText from '@crystallize/content-transformer/toText';
 import { List, Outer, SubNavigation, Item } from './styles';
 import Stackable from 'components/stackable';
@@ -58,7 +58,7 @@ export default function FolderPage({ folder, preview, hidePageHeader }) {
             {!!subChildrenNavigation?.length && (
               <SubNavigation>
                 {subChildrenNavigation?.map((item, i) => (
-                  <Microformat item={item} key={i} />
+                  <Listformat item={item} key={i} />
                 ))}
               </SubNavigation>
             )}
@@ -81,7 +81,7 @@ export default function FolderPage({ folder, preview, hidePageHeader }) {
             ?.filter((c) => c.type !== 'folder')
             ?.map((item, i) => (
               <Item className={`item-${item?.type}`} key={i}>
-                <Microformat item={item} />
+                <Listformat item={item} />
               </Item>
             ))}
         </List>

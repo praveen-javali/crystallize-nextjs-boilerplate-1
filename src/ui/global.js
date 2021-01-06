@@ -7,14 +7,16 @@ export default createGlobalStyle`
 
     --font-size-xl: 40px;
     --font-size-lg: 32px;
-    --font-size-md: 25px;
+    --font-size-md: 26px;
     --font-size-sm: 16px;
 
     --font-size-body: 20px;
+    --font-size-secondary: 16px;
     --font-size-tags: 14px;
 
     --font-listing-name-size: 16px;
     --font-listing-price-size: 18px;
+    --font-max-width: 800px;
 
     /* Colors */
     --color-main-background: #fff;
@@ -36,23 +38,23 @@ export default createGlobalStyle`
     --content-max-width:1800px;
     --content-padding-xs:0 0 0 25px;
 
-    /* Product microformat */
-    --microformat-product-height-xl:500px;
-    --microformat-product-height-lg:500px;
-    --microformat-product-height-md:500px;
-    --microformat-product-height-sm:500px;
-    --microformat-product-height-xs:300px;
-    --microformat-product-image-fit: cover;
-    --microformat-product-background: #efefef;
+    /* Product listformat */
+    --listformat-product-height-xl:500px;
+    --listformat-product-height-lg:500px;
+    --listformat-product-height-md:500px;
+    --listformat-product-height-sm:500px;
+    --listformat-product-height-xs:300px;
+    --listformat-product-image-fit: cover;
+    --listformat-product-background: #efefef;
 
-    /* Document microformat */
-    --microformat-document-height-xl:750px;
-    --microformat-document-height-lg:750px;
-    --microformat-document-height-md:750px;
-    --microformat-document-height-sm:750px;
-    --microformat-document-height-xs:450px;
-    --microformat-document-image-fit: cover;
-    --microformat-document-background: var(--color-primary-action);
+    /* Document listformat */
+    --listformat-document-height-xl:750px;
+    --listformat-document-height-lg:750px;
+    --listformat-document-height-md:750px;
+    --listformat-document-height-sm:750px;
+    --listformat-document-height-xs:450px;
+    --listformat-document-image-fit: cover;
+    --listformat-document-background: var(--color-primary-action);
 
     /* How images should behave in their parent container (cover, fill, contain) */
     --image-object-fit:contain;

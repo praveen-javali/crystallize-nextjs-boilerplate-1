@@ -10,7 +10,7 @@ export const Outer = styled.a`
   width: 100%;
   position: relative;
   border: 4px solid #fff;
-  background: var(--microformat-document-background);
+  background: var(--listformat-document-background);
   ${responsive.xs} {
     margin-bottom: 15px;
   }
@@ -70,14 +70,21 @@ export const Text = styled.div`
     font-size: var(--font-size-md);
     color: inherit;
     margin: 0;
+    line-height: 1.4em;
   }
 `;
 
 export const Description = styled.div`
   margin-top: 10px;
-  line-height: 140%;
-  color: inherit;
+  color: #fff;
+
   p {
-    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: #fff;
+    line-height: 1.8em;
+    font-size: var(--font-size-secondary);
   }
 `;

@@ -11,10 +11,14 @@ const Outer = styled.section`
     padding-right: 10px;
   }
 `;
+const Description = styled.div`
+  max-width: var(--font-max-width);
+`;
 
 const H1 = styled.h1`
   font-size: var(--font-size-xl);
   color: var(--color-text-main);
+  max-width: var(--font-max-width);
   margin-bottom: 15px;
 `;
 
@@ -22,7 +26,9 @@ export default function PageHeader({ title, description }) {
   return (
     <Outer>
       <H1>{title}</H1>
-      <ContentTransformer {...description} />
+      <Description>
+        <ContentTransformer {...description} />
+      </Description>
     </Outer>
   );
 }

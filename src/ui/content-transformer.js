@@ -15,23 +15,23 @@ const commonTransfomerOverrides = {
   }
 };
 
-const maxWidth = '600px';
-
 const ContentTransformerOuter = styled.div`
   font-size: var(--font-size-body);
+  color: var(--color-text-main);
+
+  line-height: 1.8em;
+  /* letter-spacing: 0.5px; */
   p,
   h2 {
     margin: 0 auto;
     padding-top: 0;
     text-align: left;
-    max-width: ${maxWidth};
     &:empty {
       display: none;
     }
   }
   p,
   li {
-    line-height: 1.4em;
     &:empty {
       display: none;
     }
@@ -39,7 +39,6 @@ const ContentTransformerOuter = styled.div`
   ul {
     margin: 1rem 0;
     padding-left: 1.2rem;
-
     li {
       margin-bottom: 0.5rem;
     }
@@ -47,7 +46,6 @@ const ContentTransformerOuter = styled.div`
 
   p {
     margin: 2em 0 0;
-    line-height: 1.4em;
     &:first-child {
       margin: 0;
     }
@@ -70,10 +68,9 @@ const ContentTransformerOuter = styled.div`
     position: relative;
     display: flex;
     line-height: 140%;
-
     max-width: 800px;
     align-items: center;
-    margin: 4em 0;
+    margin: 3em 0;
     &:empty {
       display: none;
     }

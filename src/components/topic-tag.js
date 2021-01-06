@@ -28,6 +28,26 @@ export const topicTagsColorMatrix = {
   'New arrival': {
     background: '#F2BBAD',
     color: '#6D5752'
+  },
+  Livingroom: {
+    background: '#DCD7EA',
+    color: '#63606C'
+  },
+  Bathroom: {
+    background: '#E2B6C4',
+    color: '#7B656C'
+  },
+  Bedroom: {
+    background: '#FDFAD9',
+    color: '#928F79'
+  },
+  Outdoor: {
+    background: '#C5B3AA',
+    color: '#5F524C'
+  },
+  Kitchen: {
+    background: '#CBCBCD',
+    color: '#737373'
   }
 };
 

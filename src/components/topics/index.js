@@ -1,4 +1,4 @@
-import ItemMicroformat from 'components/microformat';
+import Listformat from 'components/listformat';
 
 import { TopicMap, List } from './styles';
 
@@ -11,7 +11,7 @@ export default function Topics({ topicMaps }) {
     <TopicMap key={topic.name}>
       <List>
         {topic?.items?.edges.map(({ node }, i) => (
-          <ItemMicroformat item={node} key={i} />
+          <Listformat item={node} key={i} />
         ))}
       </List>
     </TopicMap>

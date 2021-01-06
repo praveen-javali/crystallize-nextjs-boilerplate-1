@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Microformat from 'components/microformat';
+import Listformat from 'components/listformat';
 
 const Cell = styled.div`
   height: 100%;
@@ -14,7 +14,7 @@ export default function GridItem({ data, gridCell }) {
   console.log('grid item', data?.type);
   return (
     <Cell {...gridCell?.layout}>
-      <Microformat item={data} />
+      <Listformat item={data} />
     </Cell>
   );
 }

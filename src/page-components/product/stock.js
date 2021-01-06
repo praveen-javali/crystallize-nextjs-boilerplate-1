@@ -7,7 +7,7 @@ const Outer = styled.div`
   display: flex;
   margin-top: 50px;
   align-items: center;
-  font-size: var(--font-size-body);
+  font-size: var(--font-size-secondary);
   font-weight: 600;
   svg {
     margin-right: 10px;

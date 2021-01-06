@@ -4,7 +4,7 @@ import Social from 'components/social';
 import { simplyFetchFromGraph } from 'lib/graph';
 import ShapeComponents from 'components/shape/components';
 import ContentTransformer from 'ui/content-transformer';
-import ItemMicroformat from 'components/microformat';
+import Listformat from 'components/listformat';
 import { useT } from 'lib/i18n';
 import toText from '@crystallize/content-transformer/toText';
 import query from './query';
@@ -46,14 +46,10 @@ export default function DocumentPage({ document, preview }) {
   const relatedProducts = document?.components?.find(
     (c) => c.name === 'Products'
   );
-
-  // const componentsRest = document?.components?.filter(
-  //   (c) => !['Intro', 'Title', 'Image', 'Products'].includes(c.name)
-  // );
   const body = document?.components?.find((c) => c.name === 'Body');
-
   const published = new Date(document?.publishedAt);
   const topics = document?.topics;
+
   return (
     <Layout
       title={title || document.name}
@@ -93,23 +89,24 @@ export default function DocumentPage({ document, preview }) {
             </HeroImage>
             <ShapeComponents components={[body]} />
           </Article>
-          <Sidebar></Sidebar>
+          <Sidebar>
+            {relatedProducts?.content?.items?.length && (
+              <Related>
+                <H2>
+                  {t('product.relatedProduct', {
+                    count: relatedProducts.content.items.length
+                  })}
+                </H2>
+                <List>
+                  {relatedProducts.content.items.map((item, i) => (
+                    <Listformat key={i} item={item} />
+                  ))}
+                </List>
+              </Related>
+            )}
+          </Sidebar>
         </Inner>
       </Outer>
-      {relatedProducts?.content?.items?.length && (
-        <Related>
-          <H2>
-            {t('product.relatedProduct', {
-              count: relatedProducts.content.items.length
-            })}
-          </H2>
-          <List>
-            {relatedProducts.content.items.map((item, i) => (
-              <ItemMicroformat key={i} item={item} />
-            ))}
-          </List>
-        </Related>
-      )}
     </Layout>
   );
 }

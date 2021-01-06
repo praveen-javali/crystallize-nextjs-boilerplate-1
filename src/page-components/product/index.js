@@ -29,6 +29,7 @@ import {
   Content,
   Specs,
   Description,
+  DescriptionWrapper,
   RelatedContainer
 } from './styles';
 
@@ -68,6 +69,7 @@ export default function ProductPage({ product, preview }) {
     (c) => c.name === 'Description'
   );
   const specs = product.components?.find((c) => c.name === 'Specs');
+
   const relatedProducts = product.components?.find(
     (c) => c.name === 'Related products'
   )?.content?.items;
@@ -102,6 +104,16 @@ export default function ProductPage({ product, preview }) {
             <Specs>
               <ShapeComponents components={[specs]} />
             </Specs>
+            {descriptionComponent && (
+              <Description>
+                <DescriptionWrapper>
+                  <ShapeComponents
+                    className="description"
+                    components={[descriptionComponent]}
+                  />
+                </DescriptionWrapper>
+              </Description>
+            )}
           </Content>
           <Actions>
             <ActionsSticky>
@@ -131,14 +143,7 @@ export default function ProductPage({ product, preview }) {
             </ActionsSticky>
           </Actions>
         </Inner>
-        {descriptionComponent && (
-          <Description>
-            <ShapeComponents
-              className="description"
-              components={[descriptionComponent]}
-            />
-          </Description>
-        )}
+
         <RelatedContainer>
           {!!relatedProducts && (
             <Collection

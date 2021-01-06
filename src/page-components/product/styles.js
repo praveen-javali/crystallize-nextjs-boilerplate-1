@@ -39,6 +39,7 @@ export const Loader = styled.div`
 `;
 
 export const Specs = styled.div`
+  padding: 0 200px 0 50px;
   ${responsive.xs} {
     border-left: 0;
     display: block;
@@ -49,8 +50,23 @@ export const Specs = styled.div`
 
 export const Description = styled(I)`
   color: var(--color-text-sub);
-  padding: 100px;
+  padding: 100px 0;
   margin-top: 100px;
+`;
+export const DescriptionWrapper = styled.div`
+  p,
+  li {
+    margin-left: 50px !important;
+    padding-right: 200px;
+  }
+  h2 {
+    font-size: var(--font-size-md);
+  }
+  h3 {
+    margin-left: 50px;
+    font-size: var(--font-size-md);
+    line-height: 38px;
+  }
 `;
 
 export const Media = styled.div`
@@ -94,7 +110,7 @@ export const ImgContainer = styled.div`
 `;
 
 export const Title = styled(H1)`
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   font-weight: 900;
 `;
 
