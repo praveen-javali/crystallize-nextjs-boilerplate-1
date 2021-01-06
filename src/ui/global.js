@@ -22,16 +22,18 @@ export default createGlobalStyle`
     --color-main-background: #fff;
     --color-text-main: #080708;
     --color-text-sub: #4c505b;
-    --color-box-background: #efefef;
 
+    --color-box-background: #efefef;
     --color-price: var(--color-text-main);
     --color-error: #EF4836;
     --color-discount:#EE6969;
+    --color-blockquote: var(--color-text-main);
   
     --color-primary-action: #FBDCCE;
     --color-primary-action-content:#080708;
     --color-icon-details: var(--color-primary-action);
     --color-ui-details: var(--color-primary-action);
+
       
     /* Properties */
     --content-padding: 50px;
@@ -45,6 +47,7 @@ export default createGlobalStyle`
     --listformat-product-height-sm:500px;
     --listformat-product-height-xs:300px;
     --listformat-product-image-fit: cover;
+    --listformat-product-image-position: left;
     --listformat-product-background: #efefef;
 
     /* Document listformat */
@@ -55,6 +58,11 @@ export default createGlobalStyle`
     --listformat-document-height-xs:450px;
     --listformat-document-image-fit: cover;
     --listformat-document-background: var(--color-primary-action);
+
+    /* Microformats */
+    --microformat-image-fit:cover;
+    --microformat-image-position:left;
+
 
     /* How images should behave in their parent container (cover, fill, contain) */
     --image-object-fit:contain;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import is from 'styled-is';
 
 const Tag = styled.div`
   padding: 6px 8px;
@@ -10,6 +11,12 @@ const Tag = styled.div`
   display: inline-block;
   margin-right: 5px;
   margin-bottom: 15px;
+  ${is('underline')`
+    font-size: 18px;
+    margin-bottom:5px;
+    padding: 6px 0;
+    margin-right: 20px;
+  `}
 `;
 
 export const topicTagsColorMatrix = {
@@ -51,10 +58,31 @@ export const topicTagsColorMatrix = {
   }
 };
 
-const TopicTag = ({ name }) => {
+const TopicTag = ({ name, underline }) => {
   const tagColor = topicTagsColorMatrix[name] || null;
+  if (underline) {
+    return (
+      <Tag
+        className="tag"
+        underline
+        style={
+          tagColor && {
+            borderBottomColor: tagColor.background,
+            borderBottomWidth: 3,
+            borderBottomStyle: 'solid'
+          }
+        }
+      >
+        {name}
+      </Tag>
+    );
+  }
 
-  return <Tag style={tagColor && { ...tagColor }}>{name}</Tag>;
+  return (
+    <Tag className="tag" style={tagColor && { ...tagColor }}>
+      {name}
+    </Tag>
+  );
 };
 
 export default TopicTag;

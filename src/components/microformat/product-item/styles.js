@@ -14,18 +14,35 @@ export const Inner = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 90px 1fr;
+  grid-gap: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dfdfdf;
 `;
 
 export const ImageWrapper = styled.div`
   position: relative;
   z-index: 1;
+  height: 120px;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
   border: 1px solid #dfdfdf;
   background: var(--listformat-product-background);
+`;
+export const Footer = styled.div`
+  /* width: 100%; */
+  padding: 5px 0;
+  color: var(--color-text-main);
+
+  h3 {
+    display: block;
+    padding: 0 0 10px;
+    font-size: 20px;
+    font-family: var(--font-family-main);
+    color: inherit;
+    margin: 0;
+  }
 `;
 
 export const Img = styled(Image)`
@@ -35,36 +52,12 @@ export const Img = styled(Image)`
 
   > img {
     display: block;
-    object-fit: var(--listformat-product-image-fit);
-    object-position: var(--listformat-product-image-position);
+    object-fit: var(--microformat-image-fit);
+    object-position: var(--microformat-image-position);
     width: 100%;
     height: 100%;
     overflow: hidden;
   }
-`;
-
-export const Footer = styled.div`
-  width: 100%;
-  padding: 5px 0;
-  color: var(--color-text-main);
-
-  h3 {
-    display: block;
-    padding: 0 0 5px;
-    font-size: var(--font-listing-name-size);
-    font-family: var(--font-family-main);
-    color: inherit;
-    margin: 0;
-  }
-`;
-
-export const Tags = styled.div`
-  position: absolute;
-  display: flex;
-  z-index: 4;
-  bottom: 15px;
-  padding: 5px;
-  width: 100%;
 `;
 
 export const Price = styled.span`
@@ -89,15 +82,16 @@ export const BeforePrice = styled.div`
   color: var(--color-price);
 `;
 export const Percentage = styled.div`
-  font-size: 14px;
-  height: 24px;
+  font-size: 12px;
+  margin-top: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
   background: var(--color-discount);
   color: #fff;
+  display: inline-block;
   border-radius: 2px;
-  position: absolute;
   z-index: 15;
-  right: 5px;
   padding: 5px 10px;
-  top: 15px;
   font-weight: 600;
 `;

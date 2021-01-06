@@ -4,16 +4,15 @@ import Social from 'components/social';
 import { simplyFetchFromGraph } from 'lib/graph';
 import ShapeComponents from 'components/shape/components';
 import ContentTransformer from 'ui/content-transformer';
-import Listformat from 'components/listformat';
-import { useT } from 'lib/i18n';
+import Microformat from 'components/microformat';
 import toText from '@crystallize/content-transformer/toText';
 import query from './query';
 import TopicTag from 'components/topic-tag';
+import { useRouter } from 'next/router';
 import {
   Img,
   List,
   H2,
-  Related,
   Outer,
   Inner,
   Title,
@@ -22,7 +21,8 @@ import {
   HeroContent,
   HeroImage,
   Article,
-  Sidebar
+  Sidebar,
+  SidebarBlock
 } from './styles';
 
 export async function getData({ asPath, language, preview = null }) {
@@ -38,17 +38,22 @@ export async function getData({ asPath, language, preview = null }) {
 }
 
 export default function DocumentPage({ document, preview }) {
-  const t = useT();
+  const router = useRouter();
   const title = document?.components?.find((c) => c.name === 'Title')?.content
     ?.text;
   const description = document?.components?.find((c) => c.name === 'Intro');
   const images = document?.components?.find((c) => c.name === 'Image');
-  const relatedProducts = document?.components?.find(
-    (c) => c.name === 'Products'
-  );
+  const featured = document?.components?.find((c) => c.name === 'Featured');
   const body = document?.components?.find((c) => c.name === 'Body');
   const published = new Date(document?.publishedAt);
   const topics = document?.topics;
+
+  //Find all topic maps, as a parent, then filter on "document" type
+  const relatedArticles = topics
+    // ?.filter((topic) => topic?.parent?.name === '[YOUR-TOPIC-MAP-NAME]') //Add this line if you want specific topic map
+    ?.map((topic) => topic?.items?.edges)
+    ?.flat()
+    ?.filter((node) => node?.node?.path !== router?.asPath);
 
   return (
     <Layout
@@ -64,7 +69,7 @@ export default function DocumentPage({ document, preview }) {
               {!!topics && (
                 <span>
                   {topics?.map((topic) => (
-                    <TopicTag {...topic} key={topic.id} />
+                    <TopicTag underline {...topic} key={topic.id} />
                   ))}
                 </span>
               )}
@@ -90,19 +95,30 @@ export default function DocumentPage({ document, preview }) {
             <ShapeComponents components={[body]} />
           </Article>
           <Sidebar>
-            {relatedProducts?.content?.items?.length && (
-              <Related>
+            {featured?.content?.items?.length && (
+              <SidebarBlock>
                 <H2>
-                  {t('product.relatedProduct', {
-                    count: relatedProducts.content.items.length
-                  })}
+                  Featured
+                  {/* {t('product.relatedProduct', {
+                    count: featured.content.items.length
+                  })} */}
                 </H2>
                 <List>
-                  {relatedProducts.content.items.map((item, i) => (
-                    <Listformat key={i} item={item} />
+                  {featured.content.items.map((item, i) => (
+                    <Microformat key={i} item={item} />
                   ))}
                 </List>
-              </Related>
+              </SidebarBlock>
+            )}
+            {!!relatedArticles && (
+              <SidebarBlock>
+                <H2>Related</H2>
+                <List>
+                  {relatedArticles.map((item, i) => (
+                    <Microformat key={i} item={item?.node} />
+                  ))}
+                </List>
+              </SidebarBlock>
             )}
           </Sidebar>
         </Inner>

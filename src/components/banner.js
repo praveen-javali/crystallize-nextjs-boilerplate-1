@@ -12,9 +12,16 @@ const Content = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  color: #000;
-  width: 30%;
-  padding: 5em 5em 5em 5em;
+  color: var(--font-color-main);
+  width: var(--font-max-width);
+  padding: 5em 50px 5em 50px;
+`;
+const Description = styled.div`
+  p,
+  li {
+    font-size: var(--font-size-body);
+    line-height: 1.8em;
+  }
 `;
 const Title = styled.h2`
   font-size: var(--font-size-lg);
@@ -46,7 +53,6 @@ const Outer = styled.div`
     .banner-content {
       position: absolute;
       padding: 0 5em;
-
       color: #fff;
       top: 0;
       left: 0;
@@ -55,6 +61,10 @@ const Outer = styled.div`
         rgba(8, 7, 8, 0) 0%,
         rgba(8, 7, 8, 0.6) 100%
       );
+      p,
+      li {
+        color: #fff;
+      }
     }
     .banner-button {
       color: #000;
@@ -78,7 +88,11 @@ const Banner = ({
     <Content className="banner-content">
       <div>
         {!!title && <Title>{title}</Title>}
-        {!!description && <ContentTransformer {...description} />}
+        {!!description && (
+          <Description>
+            <ContentTransformer {...description} />
+          </Description>
+        )}
         {!!link && (
           <Button className="banner-button" href={link}>
             {linkText}

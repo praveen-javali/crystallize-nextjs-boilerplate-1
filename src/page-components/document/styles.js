@@ -19,16 +19,16 @@ export const Byline = styled.div`
 
 export const Inner = styled.div`
   display: grid;
-  grid-template-columns: minmax(600px, 1000px) minmax(400px, 1fr);
-  grid-gap: 100px;
+  grid-template-columns: minmax(600px, 1000px) minmax(300px, 1fr);
+  grid-gap: 200px;
 `;
 
 export const Hero = styled.div`
   font-size: 20px;
   padding-left: 50px;
-  padding-top: 100px;
+  padding-top: 50px;
   display: grid;
-  grid-template-columns: minmax(600px, 1000px) minmax(400px, 1fr);
+  grid-template-columns: minmax(600px, 1000px) minmax(300px, 1fr);
   align-items: flex-start;
   margin-bottom: 50px;
   border-top: 1px solid #dfdfdf;
@@ -41,6 +41,7 @@ export const Hero = styled.div`
 
 export const HeroContent = styled.div`
   max-width: 800px;
+  margin-bottom: 25px;
 `;
 export const Article = styled.div`
   p,
@@ -55,12 +56,9 @@ export const Article = styled.div`
     line-height: 38px;
   }
 `;
-export const Sidebar = styled.div`
-  /* background: #f3f3f3; */
-  /* border: 1px solid red; */
-`;
 export const Title = styled.h1`
   font-size: 50px;
+
   color: var(--color-text-main);
   margin: 0;
   line-height: 1.2em;
@@ -68,6 +66,7 @@ export const Title = styled.h1`
     'Lucida Sans', Arial, sans-serif;
   max-width: 800px;
   margin-bottom: 15px;
+  margin-top: 50px;
 `;
 
 export const HeroImage = styled.div`
@@ -99,8 +98,6 @@ export const Img = styled(Image)`
 export const List = styled.div`
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 400px;
 `;
 
 export const H2 = styled(H)`
@@ -112,12 +109,13 @@ export const H2 = styled(H)`
   }
 `;
 
-export const Related = styled.div`
-  max-width: 1600px;
-  /* padding: 100px 100px 0 100px; */
-  /* margin: 100px auto; */
+export const Sidebar = styled.div`
+  margin-top: -15px;
+  overflow-y: scroll;
+`;
+
+export const SidebarBlock = styled.div`
   display: block;
-  ${responsive.smAndLess} {
-    padding: 50px;
-  }
+  padding-bottom: 10px;
+  margin-bottom: 50px;
 `;

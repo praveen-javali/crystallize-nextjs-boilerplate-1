@@ -71,6 +71,7 @@ const ContentTransformerOuter = styled.div`
     max-width: 800px;
     align-items: center;
     margin: 3em 0;
+    color: var(--color-blockquote);
     &:empty {
       display: none;
     }
