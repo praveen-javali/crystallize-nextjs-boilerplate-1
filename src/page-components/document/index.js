@@ -1,15 +1,29 @@
 import React from 'react';
-// import ContentTransformer from 'ui/content-transformer';
-
 import Layout from 'components/layout';
+import Social from 'components/social';
 import { simplyFetchFromGraph } from 'lib/graph';
 import ShapeComponents from 'components/shape/components';
+import ContentTransformer from 'ui/content-transformer';
 import ItemMicroformat from 'components/microformat';
 import { useT } from 'lib/i18n';
 import toText from '@crystallize/content-transformer/toText';
-import PageHeader from 'components/page-header';
 import query from './query';
-import { HeroImage, Img, List, H2, Related, Outer } from './styles';
+import TopicTag from 'components/topic-tag';
+import {
+  Img,
+  List,
+  H2,
+  Related,
+  Outer,
+  Inner,
+  Title,
+  Byline,
+  Hero,
+  HeroContent,
+  HeroImage,
+  Article,
+  Sidebar
+} from './styles';
 
 export async function getData({ asPath, language, preview = null }) {
   const { data } = await simplyFetchFromGraph({
@@ -33,9 +47,13 @@ export default function DocumentPage({ document, preview }) {
     (c) => c.name === 'Products'
   );
 
-  const componentsRest = document?.components?.filter(
-    (c) => !['Intro', 'Title', 'Image', 'Products'].includes(c.name)
-  );
+  // const componentsRest = document?.components?.filter(
+  //   (c) => !['Intro', 'Title', 'Image', 'Products'].includes(c.name)
+  // );
+  const body = document?.components?.find((c) => c.name === 'Body');
+
+  const published = new Date(document?.publishedAt);
+  const topics = document?.topics;
   return (
     <Layout
       title={title || document.name}
@@ -44,19 +62,39 @@ export default function DocumentPage({ document, preview }) {
       preview={preview}
     >
       <Outer>
-        <PageHeader {...{ title, description: description?.content?.json }} />
-
-        <HeroImage>
-          {images?.content?.images?.map((img, i) => (
-            <Img
-              key={img.url}
-              {...img}
-              alt={img.altText}
-              sizes={i > 0 ? '40vw' : '80vw'}
-            />
-          ))}
-        </HeroImage>
-        <ShapeComponents components={componentsRest} />
+        <Hero>
+          <HeroContent>
+            <Byline>
+              {!!topics && (
+                <span>
+                  {topics?.map((topic) => (
+                    <TopicTag {...topic} key={topic.id} />
+                  ))}
+                </span>
+              )}
+              <span>{`${published.toDateString()}`}</span>
+            </Byline>
+            <Title>{title || document.name}</Title>
+            <ContentTransformer {...description?.content?.json} />
+          </HeroContent>
+          <Social />
+        </Hero>
+        <Inner>
+          <Article>
+            <HeroImage>
+              {images?.content?.images?.map((img, i) => (
+                <Img
+                  key={img.url}
+                  {...img}
+                  alt={img.altText}
+                  sizes={i > 0 ? '40vw' : '80vw'}
+                />
+              ))}
+            </HeroImage>
+            <ShapeComponents components={[body]} />
+          </Article>
+          <Sidebar></Sidebar>
+        </Inner>
       </Outer>
       {relatedProducts?.content?.items?.length && (
         <Related>

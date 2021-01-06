@@ -46,8 +46,11 @@ const ContentTransformerOuter = styled.div`
   }
 
   p {
-    margin: 0 0 0.5em;
-    line-height: 1.4e;
+    margin: 2em 0 0;
+    line-height: 1.4em;
+    &:first-child {
+      margin: 0;
+    }
   }
 
   pre {
@@ -67,8 +70,10 @@ const ContentTransformerOuter = styled.div`
     position: relative;
     display: flex;
     line-height: 140%;
+
+    max-width: 800px;
     align-items: center;
-    margin: 2em 0;
+    margin: 4em 0;
     &:empty {
       display: none;
     }

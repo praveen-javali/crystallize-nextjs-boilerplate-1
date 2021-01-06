@@ -6,10 +6,10 @@ export const Paragraphs = styled.div``;
 
 export const Outer = styled.div`
   margin: 0;
-  display: grid;
-  /* grid-template-columns: repeat(12, 1fr); */
-  /* grid-template-areas: 'content content content content . media media media media media media media '; */
-  /* &:nth-child(even) {
+  /* display: grid; */
+  /* grid-template-columns: repeat(12, 1fr);
+  grid-template-areas: 'content content content content . media media media media media media media ';
+  &:nth-child(even) {
     grid-template-areas: 'media media media media media media . content content content content content';
   }
   ${isNot('text')`
