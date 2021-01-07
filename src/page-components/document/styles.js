@@ -25,13 +25,12 @@ export const Inner = styled.div`
 
 export const Hero = styled.div`
   font-size: 20px;
-  padding-left: 50px;
-  padding-top: 50px;
+  padding-top: 0px;
   display: grid;
   grid-template-columns: minmax(600px, 1000px) minmax(300px, 1fr);
-  align-items: flex-start;
+  align-items: flex-end;
   margin-bottom: 50px;
-  border-top: 1px solid #dfdfdf;
+  position: relative;
   p {
     font-size: 20px;
     line-height: 36px;
@@ -66,7 +65,7 @@ export const Title = styled.h1`
     'Lucida Sans', Arial, sans-serif;
   max-width: 800px;
   margin-bottom: 15px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 `;
 
 export const HeroImage = styled.div`

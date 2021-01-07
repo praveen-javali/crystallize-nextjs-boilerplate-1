@@ -2,20 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import { Pintrest, LinkedIn, Facebook, Twitter } from './icons';
 
-const Btn = styled.button``;
+const Btn = styled.button`
+  border-radius: 2px;
+  &:hover {
+    background: #efefef;
+  }
+`;
 const Outer = styled.div`
-  width: 100%;
+  position: fixed;
+  transform: translateX(-85px);
+  top: 167px;
+  width: 60px;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
 `;
 export default function SocialBar() {
   return (
     <Outer>
       <Btn>
-        <Facebook />
+        <Twitter />
       </Btn>
       <Btn>
-        <Twitter />
+        <Facebook />
       </Btn>
       <Btn>
         <Pintrest />

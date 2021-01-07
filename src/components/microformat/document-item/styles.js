@@ -25,6 +25,7 @@ export const Tags = styled.div`
   flex-wrap: wrap;
   z-index: 4;
   width: 100%;
+
   .tag {
     font-size: 12px !important;
     margin-right: 8px;

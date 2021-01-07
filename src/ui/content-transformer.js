@@ -18,7 +18,6 @@ const commonTransfomerOverrides = {
 const ContentTransformerOuter = styled.div`
   font-size: var(--font-size-body);
   color: var(--color-text-main);
-
   line-height: 1.8em;
   /* letter-spacing: 0.5px; */
   p,

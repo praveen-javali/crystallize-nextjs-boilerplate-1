@@ -48,12 +48,18 @@ export default function DocumentPage({ document, preview }) {
   const published = new Date(document?.publishedAt);
   const topics = document?.topics;
 
-  //Find all topic maps, as a parent, then filter on "document" type
+  // Find all topic maps, as a parent, then filter on "document" type
+  // Comment in the first filter line with your topic name to filter on a specific topic
+  // Comment in the "document" if to only show articles
   const relatedArticles = topics
-    // ?.filter((topic) => topic?.parent?.name === '[YOUR-TOPIC-MAP-NAME]') //Add this line if you want specific topic map
+    // ?.filter((topic) => topic?.parent?.name === '[YOUR-TOPIC-MAP-NAME]')
     ?.map((topic) => topic?.items?.edges)
     ?.flat()
-    ?.filter((node) => node?.node?.path !== router?.asPath);
+    ?.filter(
+      (node) =>
+        // node?.node?.type === 'document' &&
+        node?.node?.path !== router?.asPath
+    );
 
   return (
     <Layout
@@ -64,6 +70,7 @@ export default function DocumentPage({ document, preview }) {
     >
       <Outer>
         <Hero>
+          <Social />
           <HeroContent>
             <Byline>
               {!!topics && (
@@ -78,7 +85,6 @@ export default function DocumentPage({ document, preview }) {
             <Title>{title || document.name}</Title>
             <ContentTransformer {...description?.content?.json} />
           </HeroContent>
-          <Social />
         </Hero>
         <Inner>
           <Article>
