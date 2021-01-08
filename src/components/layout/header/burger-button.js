@@ -65,7 +65,7 @@ const Lines = styled.div`
 
 export default function BurgerButton({ active, onClick }) {
   return (
-    <Outer open={active} onClick={onClick}>
+    <Outer open={active} onClick={onClick} aria-lable="menu">
       <Lines open={active} />
     </Outer>
   );
