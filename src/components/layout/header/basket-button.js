@@ -12,7 +12,7 @@ const BasketButton = () => {
 
   if (status === 'ready') {
     return (
-      <Btn onClick={layout.actions.showRight} type="button">
+      <Btn onClick={layout.actions.showRight} type="button" aria-label="Basket">
         <IconBasket />
         {!!total.quantity && <BasketQuantity>{total.quantity}</BasketQuantity>}
       </Btn>

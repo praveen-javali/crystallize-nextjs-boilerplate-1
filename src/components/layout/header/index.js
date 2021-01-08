@@ -60,7 +60,7 @@ export default function Header({ simple, preview }) {
           <IconBar>
             <LocaleSwitcher />
             <Link href="/account">
-              <Btn as="a">
+              <Btn as="a" aria-label="User area">
                 <IconUser />
               </Btn>
             </Link>
