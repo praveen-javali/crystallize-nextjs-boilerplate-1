@@ -138,7 +138,7 @@ export default function Search() {
       <SearchWrapper isOpen={isOpen}>
         <Outer ref={outerRef}>
           <SearchLabel>{t('layout.searchPlaceholder')}</SearchLabel>
-          <InputGroup as="form" method="get" onSubmit={onSubmit}>
+          <InputGroup as="form" method="get" role="search" onSubmit={onSubmit}>
             <Input
               ref={searchInput}
               type="search"
