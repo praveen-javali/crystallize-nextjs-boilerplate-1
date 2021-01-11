@@ -3,18 +3,18 @@ import { Image } from '@crystallize/react-image';
 import ContentTransformer from 'ui/content-transformer';
 
 const Img = styled.div`
-  width: 70%;
   img {
     width: 100%;
   }
+  width: 70%;
 `;
 const Content = styled.div`
-  height: 100%;
-  display: flex;
   align-items: center;
   color: var(--font-color-main);
-  width: var(--font-max-width);
+  display: flex;
+  height: 100%;
   padding: 5em 50px 5em 50px;
+  width: var(--font-max-width);
 `;
 const Description = styled.div`
   p,
@@ -29,46 +29,46 @@ const Title = styled.h2`
   margin-bottom: 15px;
 `;
 const Button = styled.a`
-  padding: 10px 15px;
-  display: inline-block;
-  margin-top: 15px;
-  font-size: var(--font-size-sm);
-  font-weight: 600;
+  background: #000;
   border-radius: 4px;
   color: #fff;
-  background: #000;
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-top: 15px;
+  padding: 10px 15px;
 `;
 
 const Outer = styled.div`
-  position: relative;
-  border: 4px solid transparent;
-  margin-top: 15px;
-  display: flex;
   align-items: center;
-  margin-bottom: 100px;
   border: 1px solid #dfdfdf;
+  display: flex;
+  margin-bottom: 100px;
+  margin-top: 15px;
+  position: relative;
+
   &.use-overlay {
     display: block;
 
     .banner-content {
-      position: absolute;
-      padding: 0 5em;
-      color: #fff;
-      top: 0;
-      left: 0;
       background: linear-gradient(
         -90deg,
         rgba(8, 7, 8, 0) 0%,
         rgba(8, 7, 8, 0.6) 100%
       );
+      color: #fff;
+      left: 0;
+      padding: 0 5em;
+      position: absolute;
+      top: 0;
       p,
       li {
         color: #fff;
       }
     }
     .banner-button {
-      color: #000;
       background: #fff;
+      color: #000;
     }
     .banner-image {
       width: 100%;
@@ -87,13 +87,13 @@ const Banner = ({
   <Outer className={addTextAsOverlay ? 'use-overlay' : ''}>
     <Content className="banner-content">
       <div>
-        {!!title && <Title>{title}</Title>}
-        {!!description && (
+        {Boolean(title) && <Title>{title}</Title>}
+        {Boolean(description) && (
           <Description>
             <ContentTransformer {...description} />
           </Description>
         )}
-        {!!link && (
+        {Boolean(link) && (
           <Button className="banner-button" href={link}>
             {linkText}
           </Button>

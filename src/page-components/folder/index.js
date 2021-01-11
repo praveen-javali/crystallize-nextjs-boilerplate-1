@@ -63,6 +63,7 @@ export default function FolderPage({ folder, preview, hidePageHeader }) {
             )}
           </>
         )}
+
         {gridRelations?.length > 0 &&
           gridRelations?.map((grid, index) => (
             <Grid
