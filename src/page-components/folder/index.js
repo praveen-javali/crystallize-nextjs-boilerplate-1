@@ -24,19 +24,18 @@ export async function getData({ asPath, language, preview = null }) {
 }
 
 export default function FolderPage({ folder, preview, hidePageHeader }) {
-  const { children } = folder;
+  const { children, components } = folder;
 
-  const gridRelations = folder.components
+  const gridRelations = components
     ?.filter((c) => c.type === 'gridRelations')
     ?.reduce((acc, g) => [...acc, ...(g?.content?.grids || [])], []);
 
-  const description = folder.components?.find((c) => c.name === 'Brief')
-    ?.content?.json;
+  const description = components?.find((c) => c.name === 'Brief')?.content
+    ?.json;
 
-  const icon = folder.components?.find((c) => c.name === 'Icon');
-  const title = folder.components?.find((c) => c.name === 'Title')?.content
-    ?.text;
-  const stacks = folder?.components?.find((c) => c.name === 'Stackable content')
+  const icon = components?.find((c) => c.name === 'Icon');
+  const title = components?.find((c) => c.name === 'Title')?.content?.text;
+  const stacks = components?.find((c) => c.name === 'Stackable content')
     ?.content?.items;
 
   const subChildrenNavigation = children?.filter((c) => c.type === 'folder');
@@ -55,7 +54,7 @@ export default function FolderPage({ folder, preview, hidePageHeader }) {
               {...{ title: title || folder.name, description, image: icon }}
             />
 
-            {!!subChildrenNavigation?.length && (
+            {Boolean(subChildrenNavigation?.length) && (
               <SubNavigation>
                 {subChildrenNavigation?.map((item, i) => (
                   <Listformat item={item} key={i} />
