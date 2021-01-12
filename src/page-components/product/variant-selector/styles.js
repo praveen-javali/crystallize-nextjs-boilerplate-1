@@ -63,6 +63,21 @@ export const AttributeButton = styled.button`
   ${is('selected')`
     border-color: var(--color-text-main);
   `};
+
+  ${({ hasVariantForAttribute }) =>
+    !hasVariantForAttribute &&
+    `
+      position: relative;
+      :after {
+        background-color: rgba(1,1,1,0.05);
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    `}
 `;
 
 export const VariantImage = styled.div`

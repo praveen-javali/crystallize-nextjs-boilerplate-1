@@ -39,24 +39,8 @@ function attributesToObject({ attributes }) {
   );
 }
 
-function VariantAttributeValue({
-  attribute,
-  value,
-  variants,
-  selectedVariant
-}) {
-  const selectedAttributes = attributesToObject(selectedVariant);
-  selectedAttributes[attribute] = value;
-
-  // Get the most suitable variant
-  const mostSuitableVariant = variants.find((variant) => {
-    if (isEqual(selectedAttributes, attributesToObject(variant))) {
-      return true;
-    }
-    return false;
-  });
-
-  const [image] = mostSuitableVariant?.images || [];
+function VariantAttributeValue({ value, images = [] }) {
+  const [image] = images || [];
 
   return (
     <div>
@@ -87,7 +71,6 @@ export default function VariantSelector({
                 selected={variant.id === selectedVariant.id}
                 onClick={() => onVariantChange(variant)}
               >
-                {console.log(variant)}
                 {variant.name}
               </Button>
             </Values>
@@ -137,30 +120,37 @@ export default function VariantSelector({
         if (!selectedAttr) {
           return null;
         }
+
         return (
           <div key={attribute}>
             <AttributeName>{attribute}</AttributeName>
             <AttributeSelector>
-              {attr.map((value) => (
-                <AttributeButton
-                  key={value}
-                  onClick={() =>
-                    onAttributeSelect({
-                      attribute,
-                      value
-                    })
-                  }
-                  type="button"
-                  selected={value === selectedAttr.value}
-                >
-                  <VariantAttributeValue
-                    attribute={attribute}
-                    value={value}
-                    variants={variants}
-                    selectedVariant={selectedVariant}
-                  />
-                </AttributeButton>
-              ))}
+              {attr.map((value) => {
+                const selectedAttributes = attributesToObject(selectedVariant);
+                selectedAttributes[attribute] = value;
+
+                // Get the most suitable variant
+                const mostSuitableVariant = variants.find((variant) =>
+                  isEqual(selectedAttributes, attributesToObject(variant))
+                );
+
+                const hasVariantForAttribute = Boolean(mostSuitableVariant);
+
+                return (
+                  <AttributeButton
+                    key={value}
+                    onClick={() => onAttributeSelect({ attribute, value })}
+                    type="button"
+                    selected={value === selectedAttr.value}
+                    hasVariantForAttribute={hasVariantForAttribute}
+                  >
+                    <VariantAttributeValue
+                      images={mostSuitableVariant?.images}
+                      value={value}
+                    />
+                  </AttributeButton>
+                );
+              })}
             </AttributeSelector>
           </div>
         );
