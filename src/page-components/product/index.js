@@ -18,7 +18,6 @@ import Stock from './stock';
 import { useT } from 'lib/i18n';
 
 import {
-  Outer,
   Inner,
   Media,
   ImgContainer,
@@ -82,79 +81,77 @@ export default function ProductPage({ product, preview }) {
       preview={preview}
     >
       <SchemaOrg {...product} summary={summaryComponent} />
-      <Outer>
-        <Inner>
-          <Content>
-            <Media>
-              {selectedVariant?.images?.map((img) => (
-                <ImgContainer
-                  key={img?.url}
-                  portrait={
-                    img?.variants?.[0].height >= img?.variants?.[0]?.width
-                  }
-                >
-                  <Img
-                    {...img}
-                    // sizes={`(max-width: ${screen.sm}px) 400px, 60vw`}
-                    alt={product.name}
-                  />
-                </ImgContainer>
-              ))}
-            </Media>
-            <Specs>
-              <ShapeComponents components={[specs]} />
-            </Specs>
-            {descriptionComponent && (
-              <Description>
-                <DescriptionWrapper>
-                  <ShapeComponents
-                    className="description"
-                    components={[descriptionComponent]}
-                  />
-                </DescriptionWrapper>
-              </Description>
-            )}
-          </Content>
-          <Actions>
-            <ActionsSticky>
-              <Title>{product.name}</Title>
-
-              {summaryComponent && (
-                <Summary>
-                  <ContentTransformer {...summaryComponent?.content?.json} />
-                </Summary>
-              )}
-              {product?.topics?.map((topic) => (
-                <TopicTag {...topic} key={topic.id} />
-              ))}
-              {product.variants?.length > 1 && (
-                <VariantSelector
-                  variants={product.variants}
-                  selectedVariant={selectedVariant}
-                  onVariantChange={onVariantChange}
+      <Inner>
+        <Content>
+          <Media>
+            {selectedVariant?.images?.map((img) => (
+              <ImgContainer
+                key={img?.url}
+                portrait={
+                  img?.variants?.[0].height >= img?.variants?.[0]?.width
+                }
+              >
+                <Img
+                  {...img}
+                  // sizes={`(max-width: ${screen.sm}px) 400px, 60vw`}
+                  alt={product.name}
                 />
-              )}
-              <Buy
-                product={product}
-                selectedVariant={selectedVariant}
-                pricing={pricing}
-              />
-              <Stock selectedVariant={selectedVariant} />
-            </ActionsSticky>
-          </Actions>
-        </Inner>
-
-        <RelatedContainer>
-          {Boolean(relatedProducts) && (
-            <Collection
-              {...{
-                items: relatedProducts,
-                title: t('product.relatedProduct')
-              }}
-            />
+              </ImgContainer>
+            ))}
+          </Media>
+          <Specs>
+            <ShapeComponents components={[specs]} />
+          </Specs>
+          {descriptionComponent && (
+            <Description>
+              <DescriptionWrapper>
+                <ShapeComponents
+                  className="description"
+                  components={[descriptionComponent]}
+                />
+              </DescriptionWrapper>
+            </Description>
           )}
-        </RelatedContainer>
-      </Outer>
+        </Content>
+        <Actions>
+          <ActionsSticky>
+            <Title>{product.name}</Title>
+
+            {summaryComponent && (
+              <Summary>
+                <ContentTransformer {...summaryComponent?.content?.json} />
+              </Summary>
+            )}
+            {product?.topics?.map((topic) => (
+              <TopicTag {...topic} key={topic.id} />
+            ))}
+            {product.variants?.length > 1 && (
+              <VariantSelector
+                variants={product.variants}
+                selectedVariant={selectedVariant}
+                onVariantChange={onVariantChange}
+              />
+            )}
+            <Buy
+              product={product}
+              selectedVariant={selectedVariant}
+              pricing={pricing}
+            />
+            <Stock selectedVariant={selectedVariant} />
+          </ActionsSticky>
+        </Actions>
+      </Inner>
+
+      <RelatedContainer>
+        {Boolean(relatedProducts) && (
+          <Collection
+            {...{
+              items: relatedProducts,
+              title: t('product.relatedProduct')
+            }}
+          />
+        )}
+      </RelatedContainer>
     </Layout>
   );
 }

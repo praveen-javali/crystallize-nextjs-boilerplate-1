@@ -2,11 +2,6 @@ import styled from 'styled-components';
 import is from 'styled-is';
 import { responsive, H1, Inner as I } from 'ui';
 
-export const Outer = styled.div`
-  /* max-width: 1600px; */
-  /* margin: 0 auto; */
-`;
-
 export const Inner = styled(I)`
   display: flex;
   flex-direction: column-reverse;
@@ -33,9 +28,6 @@ export const Content = styled.div`
     margin-top: 0;
     grid-area: content;
   }
-
-  ${responsive.smPlus} {
-  }
 `;
 export const Actions = styled.div`
   ${responsive.smPlus} {
@@ -49,16 +41,6 @@ export const ActionsSticky = styled.div`
     position: sticky;
     top: 50px;
   }
-`;
-export const ShapeContent = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-`;
-
-export const Loader = styled.div`
-  text-align: center;
-  margin: 50px;
-  font-size: 2rem;
 `;
 
 export const Specs = styled.div`
@@ -94,15 +76,8 @@ export const DescriptionWrapper = styled.div`
 
 export const Media = styled.div`
   position: relative;
-  /* padding: 3rem; */
   display: flex;
   flex-wrap: wrap;
-
-  /* ${responsive.mdAndLess} {
-    display: block;
-    padding: 0;
-    margin-bottom: 2em;
-  } */
 `;
 
 //Creating a gallery based on image orientation
@@ -186,18 +161,18 @@ export const Price = styled.div`
   }
 `;
 export const DiscountDetails = styled.span`
-  font-size: 0.55em;
   display: block;
-  text-align: left;
-  font-weight: 400;
   display: flex;
+  font-size: 0.55em;
+  font-weight: 400;
   justify-content: space-between;
+  text-align: left;
 `;
 export const BeforePrice = styled.div`
-  text-decoration: line-through;
-  opacity: 0.6;
   color: var(--color-text-sub);
+  opacity: 0.6;
   padding: 5px 0;
+  text-decoration: line-through;
 `;
 export const Percentage = styled.div`
   font-weight: 600;
