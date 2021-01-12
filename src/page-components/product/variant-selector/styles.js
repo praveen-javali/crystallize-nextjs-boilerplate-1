@@ -15,17 +15,17 @@ export const Values = styled.div``;
 export const Button = styled.button.attrs(() => ({
   type: 'button'
 }))`
-  color: var(--color-text-sub);
-  width: 100%;
-  font-weight: bold;
   appearance: none;
   background: white;
   border: none;
-  padding: 8px 20px;
-  margin: 0;
+  color: var(--color-text-sub);
   cursor: pointer;
-  text-transform: capitalize;
+  font-weight: bold;
+  margin: 0;
+  padding: 8px 20px;
   position: relative;
+  text-transform: capitalize;
+  width: 100%;
   &:focus,
   &:active {
     outline: none;
@@ -39,10 +39,10 @@ export const Button = styled.button.attrs(() => ({
 `;
 
 export const AttributeName = styled.h4`
-  font-weight: 600;
-  margin: 25px 0 10px;
   color: var(--color-text-main);
   font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin: 25px 0 10px;
 `;
 
 export const AttributeSelector = styled.div`
@@ -51,15 +51,15 @@ export const AttributeSelector = styled.div`
 `;
 
 export const AttributeButton = styled.button`
-  text-transform: capitalize;
-  font-weight: bold;
-  flex-wrap: wrap;
-  border: 1px solid #dfdfdf;
-  width: 25%;
-  padding: 10px 0;
-  display: flex;
   align-items: flex-end;
+  border: 1px solid #dfdfdf;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
   justify-content: center;
+  padding: 10px 0;
+  text-transform: capitalize;
+  width: 25%;
   ${is('selected')`
     border-color: var(--color-text-main);
   `};
@@ -81,12 +81,12 @@ export const AttributeButton = styled.button`
 `;
 
 export const VariantImage = styled.div`
-  width: 100%;
-  max-width: 100px;
-  position: relative;
   img {
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
+  max-width: 100px;
+  position: relative;
+  width: 100%;
 `;
