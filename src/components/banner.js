@@ -14,7 +14,7 @@ const Content = styled.div`
   display: flex;
   height: 100%;
   padding: 5em 50px 5em 50px;
-  width: var(--font-max-width);
+  max-width: var(--font-max-width);
 `;
 const Description = styled.div`
   p,
@@ -49,18 +49,25 @@ const Outer = styled.div`
 
   &.use-overlay {
     display: block;
+    position: relative;
 
-    .banner-content {
+    :after {
       background: linear-gradient(
         -90deg,
         rgba(8, 7, 8, 0) 0%,
         rgba(8, 7, 8, 0.6) 100%
       );
-      color: #fff;
+      bottom: 0;
+      content: '';
       left: 0;
-      padding: 0 5em;
       position: absolute;
+      right: 0;
       top: 0;
+    }
+
+    .banner-content {
+      color: #fff;
+      padding: 2rem 5em;
       p,
       li {
         color: #fff;

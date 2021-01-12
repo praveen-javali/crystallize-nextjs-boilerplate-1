@@ -85,12 +85,9 @@ export default function VariantSelector({
     selectedAttributes[attribute] = value;
 
     // Get the most suitable variant
-    let variant = variants.find((variant) => {
-      if (isEqual(selectedAttributes, attributesToObject(variant))) {
-        return true;
-      }
-      return false;
-    });
+    let variant = variants.find((variant) =>
+      isEqual(selectedAttributes, attributesToObject(variant))
+    );
 
     /**
      * No variant matches all attributes. Let's select the first one
