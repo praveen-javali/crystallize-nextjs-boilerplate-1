@@ -145,7 +145,7 @@ export default function ProductPage({ product, preview }) {
         </Inner>
 
         <RelatedContainer>
-          {!!relatedProducts && (
+          {Boolean(relatedProducts) && (
             <Collection
               {...{
                 items: relatedProducts,

@@ -8,24 +8,47 @@ export const Outer = styled.div`
 `;
 
 export const Inner = styled(I)`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-areas: 'content content content content content content content . actions actions actions actions';
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0 15px;
+  ${responsive.smPlus} {
+    display: grid;
+    padding: 0 30px;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 30px;
+    grid-template-areas: 'content content content content content content content actions actions actions actions actions';
+  }
+  ${responsive.mdPlus} {
+    padding-left: 100px;
+    padding-right: 100px;
+    column-gap: initial;
+    grid-template-areas: 'content content content content content content content . actions actions actions actions';
+  }
 `;
 export const Content = styled.div`
-  ${responsive.mdPlus} {
+  // vertical space between the actions and the content
+  margin-top: 30px;
+  ${responsive.smPlus} {
+    // Remove the vertical space because now they are placed next to each other
+    margin-top: 0;
     grid-area: content;
+  }
+
+  ${responsive.smPlus} {
   }
 `;
 export const Actions = styled.div`
-  ${responsive.mdPlus} {
+  ${responsive.smPlus} {
     grid-area: actions;
   }
 `;
 
 export const ActionsSticky = styled.div`
-  position: sticky;
-  top: 50px;
+  // Adding styles only when they are needed makes the calculation of CSSOM faster
+  ${responsive.mdPlus} {
+    position: sticky;
+    top: 50px;
+  }
 `;
 export const ShapeContent = styled.div`
   max-width: 800px;
@@ -123,38 +146,43 @@ export const Summary = styled.div`
 
 export const ProductFooter = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   padding: 15px 0 15px;
-  justify-content: space-between;
   border-top: 1px solid #cecece;
   border-bottom: 1px solid #cecece;
   align-items: center;
-  height: 125px;
+  ${responsive.mdPlus} {
+    margin-bottom: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-  ${responsive.xs} {
-    button {
-      flex-grow: 1;
-      margin: 1rem 0;
+  button {
+    ${responsive.mdPlus} {
+      flex-grow: 0;
     }
   }
 `;
 
 export const Price = styled.div`
-  text-align: center;
+  align-items: center;
   color: var(--color-text-sub);
+  display: flex;
+  flex-direction: column;
   font-size: var(--font-size-lg);
-  margin: 20px;
-  margin-left: 0;
+  margin-bottom: 20px;
+  margin-top: 20px;
   ${is('discounted')`
     color:var(--color-discount);
   `}
-  strong {
-    display: inline-block;
-    margin-left: 5px;
-  }
 
   ${responsive.xs} {
     flex-grow: 1;
+  }
+
+  ${responsive.mdPlus} {
+    margin-right: 20px;
   }
 `;
 export const DiscountDetails = styled.span`

@@ -31,6 +31,12 @@ export default function BuyButton({ product, selectedVariant, pricing }) {
         : pricing?.defaultPrice.identifier || locale.crystallizePriceVariant
     });
   }
+
+  const textDefaultPrice = t('common.price', {
+    value: pricing?.defaultPrice?.price,
+    currency: pricing?.defaultPrice?.currency
+  });
+
   return (
     <ProductFooter>
       {pricing?.discountPrice ? (
@@ -42,23 +48,13 @@ export default function BuyButton({ product, selectedVariant, pricing }) {
             })}
           </strong>
           <DiscountDetails>
-            <BeforePrice>
-              {t('common.price', {
-                value: pricing?.defaultPrice?.price,
-                currency: pricing?.defaultPrice?.currency
-              })}
-            </BeforePrice>
+            <BeforePrice>{textDefaultPrice}</BeforePrice>
             <Percentage>{`-${pricing?.discountPercentage}%`}</Percentage>
           </DiscountDetails>
         </Price>
       ) : (
         <Price>
-          <strong>
-            {t('common.price', {
-              value: pricing?.defaultPrice?.price,
-              currency: pricing?.defaultPrice?.currency
-            })}
-          </strong>
+          <strong>{textDefaultPrice}</strong>
         </Price>
       )}
       <Button
