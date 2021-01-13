@@ -45,18 +45,22 @@ export const ActionsSticky = styled.div`
   }
 `;
 
+// The specs and DescriptionWrapper padding-right
+// must be the same so the content looks aligned
 export const Specs = styled.div`
   border-left: 0;
   display: block;
   margin-top: 15px;
   padding: 20px 0;
+  margin-left: 25px;
+  margin-right: 25px;
 
   ${responsive.mdPlus} {
-    padding: 0 200px 0 50px;
+    padding: 0 100px 0 50px;
   }
 `;
 
-export const Description = styled(I)`
+export const Description = styled.div`
   color: var(--color-text-sub);
 
   ${responsive.mdPlus} {
@@ -68,8 +72,8 @@ export const DescriptionWrapper = styled.div`
   p,
   li {
     margin-left: 25px !important;
-    padding-right: 200px;
     ${responsive.mdPlus} {
+      padding-right: 100px;
       margin-left: 50px !important;
     }
   }
