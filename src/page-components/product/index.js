@@ -47,10 +47,13 @@ export async function getData({ asPath, language, preview = null }) {
 export default function ProductPage({ product, preview }) {
   const locale = useLocale();
   const t = useT();
+  const { name, components = [], variants = [], topics = [] } = product;
+
   // Set the selected variant to the default
   const [selectedVariant, setSelectedVariant] = useState(
-    product.variants.find((v) => v.isDefault)
+    variants.find((variant) => variant.isDefault)
   );
+
   function onVariantChange(variant) {
     setSelectedVariant(variant);
   }
@@ -60,22 +63,28 @@ export default function ProductPage({ product, preview }) {
     locale
   });
 
-  //Find content from the GraphQl response:
-  const summaryComponent = product.components?.find(
-    (c) => c.name === 'Summary'
-  );
-  const descriptionComponent = product.components?.find(
-    (c) => c.name === 'Description'
-  );
-  const specs = product.components?.find((c) => c.name === 'Specs');
+  // Find content from the GraphQl response:
+  const summaryComponent = components.find(isSumaryComponent);
+  const descriptionComponent = components.find(isDescriptionComponent);
+  const specs = components.find(isSpecsComponent);
+  const relatedProducts = components.find(isRelatedProductsComponent)?.content
+    ?.items;
 
-  const relatedProducts = product.components?.find(
-    (c) => c.name === 'Related products'
-  )?.content?.items;
+  const productTopics = topics.map((topic) => (
+    <TopicTag {...topic} key={topic.id} />
+  ));
+
+  const productVariants = variants.length > 1 && (
+    <VariantSelector
+      variants={variants}
+      selectedVariant={selectedVariant}
+      onVariantChange={onVariantChange}
+    />
+  );
 
   return (
     <Layout
-      title={product.name}
+      title={name}
       image={selectedVariant?.images?.[0]?.url}
       description={toText(summaryComponent?.content?.json)}
       preview={preview}
@@ -91,11 +100,7 @@ export default function ProductPage({ product, preview }) {
                   img?.variants?.[0].height >= img?.variants?.[0]?.width
                 }
               >
-                <Img
-                  {...img}
-                  // sizes={`(max-width: ${screen.sm}px) 400px, 60vw`}
-                  alt={product.name}
-                />
+                <Img {...img} alt={name} />
               </ImgContainer>
             ))}
           </Media>
@@ -115,23 +120,14 @@ export default function ProductPage({ product, preview }) {
         </Content>
         <Actions>
           <ActionsSticky>
-            <Title>{product.name}</Title>
-
+            <Title>{name}</Title>
             {summaryComponent && (
               <Summary>
                 <ContentTransformer {...summaryComponent?.content?.json} />
               </Summary>
             )}
-            {product?.topics?.map((topic) => (
-              <TopicTag {...topic} key={topic.id} />
-            ))}
-            {product.variants?.length > 1 && (
-              <VariantSelector
-                variants={product.variants}
-                selectedVariant={selectedVariant}
-                onVariantChange={onVariantChange}
-              />
-            )}
+            {productTopics}
+            {productVariants}
             <Buy
               product={product}
               selectedVariant={selectedVariant}
@@ -145,13 +141,27 @@ export default function ProductPage({ product, preview }) {
       <RelatedContainer>
         {Boolean(relatedProducts) && (
           <Collection
-            {...{
-              items: relatedProducts,
-              title: t('product.relatedProduct')
-            }}
+            items={relatedProducts}
+            title={t('product.relatedProduct')}
           />
         )}
       </RelatedContainer>
     </Layout>
   );
+}
+
+function isSumaryComponent({ name }) {
+  return name === 'Summary';
+}
+
+function isDescriptionComponent({ name }) {
+  return name === 'Description';
+}
+
+function isSpecsComponent({ name }) {
+  return name === 'Specs';
+}
+
+function isRelatedProductsComponent({ name }) {
+  return name === 'Related products';
 }

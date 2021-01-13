@@ -20,6 +20,7 @@ export const Inner = styled(I)`
     grid-template-areas: 'content content content content content content content . actions actions actions actions';
   }
 `;
+
 export const Content = styled.div`
   // vertical space between the actions and the content
   margin-top: 30px;
@@ -29,6 +30,7 @@ export const Content = styled.div`
     grid-area: content;
   }
 `;
+
 export const Actions = styled.div`
   ${responsive.smPlus} {
     grid-area: actions;
@@ -160,6 +162,7 @@ export const Price = styled.div`
     margin-right: 20px;
   }
 `;
+
 export const DiscountDetails = styled.span`
   display: block;
   display: flex;
@@ -168,12 +171,14 @@ export const DiscountDetails = styled.span`
   justify-content: space-between;
   text-align: left;
 `;
+
 export const BeforePrice = styled.div`
   color: var(--color-text-sub);
   opacity: 0.6;
   padding: 5px 0;
   text-decoration: line-through;
 `;
+
 export const Percentage = styled.div`
   font-weight: 600;
   padding: 5px 15px;

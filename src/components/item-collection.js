@@ -210,13 +210,13 @@ export default function ItemCollection({ title, description, items }) {
 
   return (
     <Outer>
-      {!!title && <Title as="h4">{title}</Title>}
-      {!!description && (
+      {Boolean(title) && <Title as="h4">{title}</Title>}
+      {Boolean(description) && (
         <Description>
           <ContentTransformer {...description} />
         </Description>
       )}
-      {!!items && (
+      {Boolean(items) && (
         <Slider>
           <Arrow
             $show={scrollState !== 'beginning'}
