@@ -70,17 +70,7 @@ export default function ProductPage({ product, preview }) {
   const relatedProducts = components.find(isRelatedProductsComponent)?.content
     ?.items;
 
-  const productTopics = topics.map((topic) => (
-    <TopicTag {...topic} key={topic.id} />
-  ));
-
-  const productVariants = variants.length > 1 && (
-    <VariantSelector
-      variants={variants}
-      selectedVariant={selectedVariant}
-      onVariantChange={onVariantChange}
-    />
-  );
+  const hasMoreThanOneVariant = variants.length > 1;
 
   return (
     <Layout
@@ -93,16 +83,15 @@ export default function ProductPage({ product, preview }) {
       <Inner>
         <Content>
           <Media>
-            {selectedVariant?.images?.map((img) => (
-              <ImgContainer
-                key={img?.url}
-                portrait={
-                  img?.variants?.[0].height >= img?.variants?.[0]?.width
-                }
-              >
-                <Img {...img} alt={name} />
-              </ImgContainer>
-            ))}
+            {selectedVariant?.images?.map((img) => {
+              const isPrortraitImage =
+                img?.variants?.[0].height >= img?.variants?.[0]?.width;
+              return (
+                <ImgContainer key={img?.url} portrait={isPrortraitImage}>
+                  <Img {...img} alt={name} />
+                </ImgContainer>
+              );
+            })}
           </Media>
           <Specs>
             <ShapeComponents components={[specs]} />
@@ -126,8 +115,16 @@ export default function ProductPage({ product, preview }) {
                 <ContentTransformer {...summaryComponent?.content?.json} />
               </Summary>
             )}
-            {productTopics}
-            {productVariants}
+            {topics.map((topic) => (
+              <TopicTag {...topic} key={topic.id} />
+            ))}
+            {hasMoreThanOneVariant && (
+              <VariantSelector
+                variants={variants}
+                selectedVariant={selectedVariant}
+                onVariantChange={onVariantChange}
+              />
+            )}
             <Buy
               product={product}
               selectedVariant={selectedVariant}
