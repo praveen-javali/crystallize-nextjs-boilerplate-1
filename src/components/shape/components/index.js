@@ -20,7 +20,7 @@ const ContentOuter = styled.div`
   }
 `;
 
-const ShapeComponents = ({ components, overrides }) => {
+const ShapeComponents = ({ components = [], overrides }) => {
   if (!components || !Array.isArray(components)) {
     return null;
   }
@@ -28,8 +28,9 @@ const ShapeComponents = ({ components, overrides }) => {
   return (
     <div>
       {components
-        ?.filter((component) => component?.content != null)
+        .filter((component) => component?.content != null)
         .map(({ type, ...component }, index) => {
+          console.log({ type, component });
           const key = index;
           let Component;
 

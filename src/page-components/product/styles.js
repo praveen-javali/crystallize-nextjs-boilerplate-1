@@ -46,33 +46,45 @@ export const ActionsSticky = styled.div`
 `;
 
 export const Specs = styled.div`
-  padding: 0 200px 0 50px;
-  ${responsive.xs} {
-    border-left: 0;
-    display: block;
-    margin-top: 15px;
-    padding: 20px 0;
+  border-left: 0;
+  display: block;
+  margin-top: 15px;
+  padding: 20px 0;
+
+  ${responsive.mdPlus} {
+    padding: 0 200px 0 50px;
   }
 `;
 
 export const Description = styled(I)`
   color: var(--color-text-sub);
-  padding: 100px 0;
-  margin-top: 100px;
+
+  ${responsive.mdPlus} {
+    padding: 100px 0;
+    margin-top: 100px;
+  }
 `;
 export const DescriptionWrapper = styled.div`
   p,
   li {
-    margin-left: 50px !important;
+    margin-left: 25px !important;
     padding-right: 200px;
+    ${responsive.mdPlus} {
+      margin-left: 50px !important;
+    }
   }
+
   h2 {
     font-size: var(--font-size-md);
   }
+
   h3 {
-    margin-left: 50px;
+    margin-left: 25px;
     font-size: var(--font-size-md);
     line-height: 38px;
+    ${responsive.mdPlus} {
+      margin-left: 50px;
+    }
   }
 `;
 
