@@ -46,7 +46,7 @@ const ContentTransformerOuter = styled.div`
   p {
     margin: 2em 0 0;
     &:first-child {
-      margin: 0;
+      margin-top: 0;
     }
   }
 

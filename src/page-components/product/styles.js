@@ -72,9 +72,11 @@ export const DescriptionWrapper = styled.div`
   p,
   li {
     margin-left: 25px !important;
+    margin-right: 25px;
     ${responsive.mdPlus} {
       padding-right: 100px;
       margin-left: 50px !important;
+      margin-right: 0;
     }
   }
 
