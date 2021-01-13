@@ -2,7 +2,14 @@ import styled from 'styled-components';
 import is from 'styled-is';
 import { responsive, H1, Inner as I } from 'ui';
 
-export const Inner = styled(I)`
+const Layout = styled(I)`
+  padding: 0 15px;
+  ${responsive.mdPlus} {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+`;
+export const Inner = styled(Layout)`
   display: flex;
   flex-direction: column-reverse;
   padding: 0 15px;
@@ -39,7 +46,7 @@ export const Actions = styled.div`
 
 export const ActionsSticky = styled.div`
   // Adding styles only when they are needed makes the calculation of CSSOM faster
-  ${responsive.mdPlus} {
+  ${responsive.smPlus} {
     position: sticky;
     top: 50px;
   }
@@ -202,6 +209,7 @@ export const Percentage = styled.div`
   padding: 5px 15px;
 `;
 
-export const RelatedContainer = styled(I)`
+export const RelatedContainer = styled(Layout)`
+  margin-top: 100px;
   min-height: 0;
 `;
